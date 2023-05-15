@@ -1,7 +1,8 @@
 node_modules/
 
+.DS_Store
 .editorconfig
+.env
 .gitattributes
 .gitignore
-
-*.code-workspace
+desktop.ini

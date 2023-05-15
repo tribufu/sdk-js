@@ -1,5 +1,11 @@
+.next/
+.parcel-cache/
+[Bb]uild/
+[Ss]aved/
 node_modules/
 
-Build/
-
-*.log
+*.wasm
+.DS_Store
+.env
+desktop.ini
+yarn-error.log
