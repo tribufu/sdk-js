@@ -11,7 +11,8 @@
     "types": "Build/index.d.ts",
     "scripts": {
         "watch": "parcel watch --cache-dir Saved/Cache",
-        "build": "parcel build --cache-dir Saved/Cache"
+        "build": "parcel build --cache-dir Saved/Cache",
+        "prepare": "npm run build"
     },
     "devDependencies": {
         "@parcel/packager-ts": "2.8.3",
