@@ -1,22 +1,28 @@
 {
     "name": "tribufu",
-    "version": "0.0.2",
-    "description": "TribuFu JS SDK",
-    "repository": "https://github.com/TribuFu/SDK-JS",
-    "author": "TribuFu <contact@tribufu.com>",
+    "version": "0.0.4",
+    "description": "Tribufu JS SDK",
+    "repository": "https://github.com/Tribufu/SDK-JS",
+    "author": "Tribufu <contact@Tribufu.com>",
     "license": "Apache-2.0",
-    "source": "Source/index.ts",
-    "main": "Build/main.js",
-    "module": "Build/module.js",
-    "types": "Build/index.d.ts",
+    "source": "src/index.ts",
+    "main": "build/main.js",
+    "module": "build/module.js",
+    "types": "build/index.d.ts",
     "scripts": {
-        "watch": "parcel watch --cache-dir Saved/Cache",
-        "build": "parcel build --cache-dir Saved/Cache",
-        "prepare": "npm run build"
+        "watch": "parcel watch --cache-dir saved/cache",
+        "build": "parcel build --cache-dir saved/cache"
+    },
+    "dependencies": {
+        "axios": "^1.6.2",
+        "json-bigint": "^1.0.0",
+        "uuid": "^9.0.1"
     },
     "devDependencies": {
         "@parcel/packager-ts": "2.8.3",
         "@parcel/transformer-typescript-types": "2.8.3",
+        "@types/json-bigint": "^1.0.4",
+        "@types/uuid": "^9.0.7",
         "parcel": "^2.8.3",
         "typescript": ">=3.0.0"
     }
