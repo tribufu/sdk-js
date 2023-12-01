@@ -1,1 +1,1 @@
-# TribuFu SDK - JavaScript
+# JavaScript SDK
