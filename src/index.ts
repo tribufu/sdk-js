@@ -30,4 +30,31 @@ export class TribufuClient {
     public getId(): BigInt {
         return this.id;
     }
-}
+};
+
+import {
+    OAuth2AuthorizeRequest,
+    OAuth2CodeResponse,
+    OAuth2RevokeRequest,
+    OAuth2TokenRequest,
+    OAuth2TokenResponse,
+} from './oauth2';
+
+import type {
+    OAuth2GrantType,
+    OAuth2ResponseType,
+    OAuth2TokenHintType,
+    OAuth2TokenType,
+} from './oauth2';
+
+export {
+    OAuth2AuthorizeRequest,
+    OAuth2CodeResponse,
+    OAuth2GrantType,
+    OAuth2ResponseType,
+    OAuth2RevokeRequest,
+    OAuth2TokenHintType,
+    OAuth2TokenRequest,
+    OAuth2TokenResponse,
+    OAuth2TokenType,
+};

@@ -8,6 +8,9 @@
         "emitDeclarationOnly": true,
         "forceConsistentCasingInFileNames": true,
     },
+    "include": [
+        "src/**/*",
+    ],
     "exclude": [
         "build",
         "node_modules",
