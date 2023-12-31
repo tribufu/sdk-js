@@ -12,7 +12,8 @@
     },
     "scripts": {
         "clean": "rimraf build",
-        "build": "yarn clean && tsc && node scripts/esbuild.js"
+        "build": "yarn clean && tsc && node scripts/esbuild.js",
+        "prepare": "npm run build"
     },
     "dependencies": {
         "@types/express": "^4.17.21",
