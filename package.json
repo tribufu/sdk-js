@@ -1,6 +1,6 @@
 {
     "name": "tribufu",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Tribufu JS SDK",
     "repository": "https://github.com/Tribufu/TribufuJs",
     "author": "Tribufu <contact@Tribufu.com>",
@@ -16,7 +16,6 @@
         "prepare": "npm run build"
     },
     "dependencies": {
-        "@types/express": "^4.17.21",
         "axios": "^1.6.3",
         "camelcase-keys": "^9.1.2",
         "fp-ts": "^2.16.1",
