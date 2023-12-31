@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "target": "ESNext",
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "noImplicitAny": false,
+        "moduleResolution": "Node",
+        "esModuleInterop": true,
+        "allowImportingTsExtensions": true,
+        "outDir": "build",
+        "lib": [
+            "ESNext",
+            "DOM"
+        ],
+        "paths": {
+            "@/*": [
+                "./*"
+            ]
+        }
+    },
+    "include": [
+        "**/*.ts",
+    ],
+    "exclude": [
+        "build",
+        "node_modules",
+    ],
+}

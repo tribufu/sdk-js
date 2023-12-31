@@ -1,23 +1,35 @@
 {
     "name": "tribufu",
-    "version": "0.0.2",
-    "description": "TribuFu JS SDK",
-    "repository": "https://github.com/TribuFu/SDK-JS",
-    "author": "TribuFu <contact@tribufu.com>",
+    "version": "0.1.0",
+    "description": "Tribufu JS SDK",
+    "repository": "https://github.com/Tribufu/TribufuJs",
+    "author": "Tribufu <contact@Tribufu.com>",
     "license": "Apache-2.0",
-    "source": "Source/index.ts",
-    "main": "Build/main.js",
-    "module": "Build/module.js",
-    "types": "Build/index.d.ts",
+    "type": "module",
+    "exports": {
+        "import": "./build/index.mjs",
+        "require": "./build//index.cjs"
+    },
     "scripts": {
-        "watch": "parcel watch --cache-dir Saved/Cache",
-        "build": "parcel build --cache-dir Saved/Cache",
-        "prepare": "npm run build"
+        "clean": "rimraf build",
+        "build": "yarn clean && tsc && node scripts/esbuild.js"
+    },
+    "dependencies": {
+        "@types/express": "^4.17.21",
+        "axios": "^1.6.3",
+        "camelcase-keys": "^9.1.2",
+        "fp-ts": "^2.16.1",
+        "json-bigint": "^1.0.0",
+        "snakecase-keys": "^5.5.0",
+        "uuid": "^9.0.1"
     },
     "devDependencies": {
-        "@parcel/packager-ts": "2.8.3",
-        "@parcel/transformer-typescript-types": "2.8.3",
-        "parcel": "^2.8.3",
-        "typescript": ">=3.0.0"
+        "@types/json-bigint": "^1.0.4",
+        "@types/uuid": "^9.0.7",
+        "cross-env": "^7.0.3",
+        "esbuild": "^0.19.10",
+        "esbuild-node-externals": "^1.12.0",
+        "rimraf": "^5.0.5",
+        "typescript": "^5.3.3"
     }
 }
