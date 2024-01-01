@@ -32,6 +32,11 @@ export interface OAuth2TokenRequest {
     redirect_uri?: string | null;
 };
 
+export interface OAuth2RevokeRequest {
+    token: string;
+    token_type_hint: OAuth2TokenHintType;
+};
+
 export interface OAuth2TokenResponse {
     token_type: OAuth2TokenType;
     access_token: string;
@@ -41,7 +46,7 @@ export interface OAuth2TokenResponse {
     expires_in: number;
 };
 
-export interface OAuth2RevokeRequest {
+export interface OAuth2IntrospectionRequest {
     token: string;
     token_type_hint: OAuth2TokenHintType;
 };

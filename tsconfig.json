@@ -8,6 +8,8 @@
         "moduleResolution": "Node",
         "esModuleInterop": true,
         "allowImportingTsExtensions": true,
+        "resolveJsonModule": true,
+        "rootDir": "src",
         "outDir": "build",
         "lib": [
             "ESNext",
