@@ -19,7 +19,7 @@ export class TribufuClient extends TribufuApi {
     private readonly clientSecret: string;
 
     constructor(clientId: string, clientSecret: string) {
-        super({});
+        super();
 
         this.clientId = clientId;
         this.clientSecret = clientSecret;
@@ -36,15 +36,16 @@ export class TribufuClient extends TribufuApi {
      * ```ts
      * // process.env.TRIBUFU_CLIENT_ID
      * // process.env.TRIBUFU_CLIENT_SECRET
-     * const client = TribufuClient.fromEnv("TRIBUFU_");
+     * const client = TribufuClient.fromEnv("TRIBUFU");
      * ```
      */
-    public static override fromEnv(prefix: string = ""): TribufuClient | null {
-        const clientId = process.env[`${prefix}CLIENT_ID`];
-        const clientSecret = process.env[`${prefix}CLIENT_SECRET`];
+    public static override fromEnv(prefix?: string | null): TribufuClient | null {
+        const envPrefix = prefix ? `${prefix}_` : "";
+        const clientId = process.env[`${envPrefix}CLIENT_ID`];
+        const clientSecret = process.env[`${envPrefix}CLIENT_SECRET`];
 
         if (clientId && clientSecret) {
-            return TribufuApi.withClient(clientId, clientSecret);
+            return new TribufuClient(clientId, clientSecret);
         }
 
         return null;

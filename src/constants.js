@@ -1,4 +1,4 @@
-a// Copyright (c) Tribufu. All Rights Reserved.
+// Copyright (c) Tribufu. All Rights Reserved.
 
 import packageJson from "../package.json";
 

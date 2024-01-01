@@ -10,6 +10,8 @@ import axios, { AxiosInstance } from "axios";
 import jwt from "jsonwebtoken";
 import { TokenPayload } from "./token";
 import { TRIBUFU_API_URL, TRIBUFU_VERSION } from ".";
+import camelcaseKeys from "camelcase-keys";
+import snakecaseKeys from "snakecase-keys";
 
 /**
  * **Tribufu API**
@@ -22,8 +24,8 @@ import { TRIBUFU_API_URL, TRIBUFU_VERSION } from ".";
  * - A client give you read and write access to the Tribufu API as a client application.
  */
 export class TribufuApi {
-    protected readonly http: AxiosInstance;
     protected readonly options: TribufuApiOptions;
+    protected readonly http: AxiosInstance;
 
     constructor(options?: TribufuApiOptions | null) {
         this.options = options || {};
@@ -33,12 +35,26 @@ export class TribufuApi {
             headers: TribufuApi.defaultHeaders(),
         });
 
-        if (TribufuApi.debugEnabled()) {
-            http.interceptors.request.use((req) => {
+        http.interceptors.request.use((req) => {
+            if (TribufuApi.debugEnabled()) {
                 console.log(`(TribufuApi) ${req.method?.toUpperCase()} ${req.baseURL}${req.url}`);
-                return req;
-            });
-        }
+            }
+
+            const contentType = req.headers["Content-Type"];
+            if (req.data && (contentType === "application/json" || contentType === "application/x-www-form-urlencoded")) {
+                req.data = snakecaseKeys(req.data);
+            }
+
+            return req;
+        });
+
+        http.interceptors.response.use((res) => {
+            if (res.data) {
+                res.data = camelcaseKeys(res.data);
+            }
+
+            return res;
+        });
 
         this.http = http;
     }
@@ -48,7 +64,7 @@ export class TribufuApi {
      * @returns
      */
     public static default(): TribufuApi {
-        return new TribufuApi({});
+        return new TribufuApi();
     }
 
     /**
@@ -64,40 +80,6 @@ export class TribufuApi {
     }
 
     /**
-     * Create a TribufuBot with the given bot token.
-     *
-     * - A bot give you read and write access to the Tribufu API as a bot account.
-     *
-     * @param token
-     * @returns TribufuBot
-     */
-    public static withBot(token: string): TribufuBot {
-        return new TribufuBot(token);
-    }
-
-    /**
-     * Create a TribufuClient with the given client id and client secret.
-     *
-     * @param clientId
-     * @param clientSecret
-     * @returns TribufuClient
-     */
-    public static withClient(clientId: string, clientSecret: string): TribufuClient {
-        return new TribufuClient(clientId, clientSecret);
-    }
-
-    /**
-     * Create a TribufuServer with the given server id, client id and client secret.
-     * @param serverId
-     * @param clientId
-     * @param clientSecret
-     * @returns TribufuServer
-     */
-    public static withServer(serverId: string, clientId: string, clientSecret: string): TribufuServer {
-        return new TribufuServer(serverId, clientId, clientSecret);
-    }
-
-    /**
      * Try to create a TribufuApi from environment variables.
      *
      * - This will only work if the environment variables are set.
@@ -107,11 +89,12 @@ export class TribufuApi {
      * @example
      * ```ts
      * // process.env.TRIBUFU_API_KEY
-     * const api = TribufuApi.fromEnv("TRIBUFU_");
+     * const api = TribufuApi.fromEnv("TRIBUFU");
      * ```
      */
-    public static fromEnv(prefix: string = ""): TribufuApi | null {
-        const apiKey = process.env[`${prefix}API_KEY`];
+    public static fromEnv(prefix?: string | null): TribufuApi | null {
+        const envPrefix = prefix ? `${prefix}_` : "";
+        const apiKey = process.env[`${envPrefix}API_KEY`];
 
         if (apiKey) {
             return TribufuApi.withApiKey(apiKey);

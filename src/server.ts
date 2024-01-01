@@ -32,16 +32,17 @@ export class TribufuServer extends TribufuClient {
      * // process.env.TRIBUFU_SERVER_ID
      * // process.env.TRIBUFU_CLIENT_ID
      * // process.env.TRIBUFU_CLIENT_SECRET
-     * const server = TribufuServer.fromEnv("TRIBUFU_");
+     * const server = TribufuServer.fromEnv("TRIBUFU");
      * ```
      */
-    public static override fromEnv(prefix: string = ""): TribufuServer | null {
-        const serverId = process.env[`${prefix}SERVER_ID`];
-        const clientId = process.env[`${prefix}CLIENT_ID`];
-        const clientSecret = process.env[`${prefix}CLIENT_SECRET`];
+    public static override fromEnv(prefix?: string | null): TribufuServer | null {
+        const envPrefix = prefix ? `${prefix}_` : "";
+        const serverId = process.env[`${envPrefix}SERVER_ID`];
+        const clientId = process.env[`${envPrefix}CLIENT_ID`];
+        const clientSecret = process.env[`${envPrefix}CLIENT_SECRET`];
 
         if (serverId && clientId && clientSecret) {
-            return TribufuApi.withServer(serverId, clientId, clientSecret);
+            return new TribufuServer(serverId, clientId, clientSecret);
         }
 
         return null;

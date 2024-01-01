@@ -43,14 +43,15 @@ export class TribufuBot extends TribufuApi {
      * @example
      * ```ts
      * // process.env.TRIBUFU_BOT_TOKEN
-     * const bot = TribufuBot.fromEnv("TRIBUFU_");
+     * const bot = TribufuBot.fromEnv("TRIBUFU");
      * ```
      */
-    public static override fromEnv(prefix: string = ""): TribufuBot | null {
-        const token = process.env[`${prefix}BOT_TOKEN`];
+    public static override fromEnv(prefix?: string | null): TribufuBot | null {
+        const envPrefix = prefix ? `${prefix}_` : "";
+        const token = process.env[`${envPrefix}BOT_TOKEN`];
 
         if (token) {
-            return TribufuApi.withBot(token);
+            return new TribufuBot(token);
         }
 
         return null;
