@@ -1,8 +1,14 @@
 // Copyright (c) Tribufu. All Rights Reserved.
 
 import dotenv from 'dotenv';
-import { TribufuApi } from '../src';
+import { TribufuApi } from '../build/index.mjs';
 
 dotenv.config();
 
-const api = TribufuApi.fromEnv();
+async function main() {
+    const api = TribufuApi.fromEnv("TRIBUFU");
+    const games = await api.getGames();
+    console.log(games[0]);
+}
+
+main();
