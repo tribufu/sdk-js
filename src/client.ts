@@ -79,20 +79,37 @@ export class TribufuClient extends TribufuApi {
         return client;
     }
 
+    /**
+     * Set the tokens.
+     * @param accessToken
+     * @param refreshToken
+     * @param expiresIn
+     */
     private setTokens(accessToken: string | null, refreshToken?: string | null, expiresIn?: number | null): void {
         this.options.accessToken = accessToken;
         this.options.refreshToken = refreshToken || null;
         this.options.expiresIn = expiresIn || null;
     }
 
+    /**
+     * Clear the tokens.
+     */
     private clearTokens(): void {
         this.setTokens(null, null, null);
     }
 
+    /**
+     * Set the tokens from a oauth2 response.
+     * @param tokens
+     */
     private setTokensFromResponse(tokens: OAuth2TokenResponse): void {
         this.setTokens(tokens.access_token, tokens.refresh_token || null, tokens.expires_in || null);
     }
 
+    /**
+     * Get the headers for a oauth2 request.
+     * @returns HeaderMap
+     */
     private getOAuthHeaders(): HeaderMap {
         let headers = this.getHeaders();
         headers["Authorization"] = `Basic ${Buffer.from(`${this.clientId}:${this.clientSecret}`, "binary").toString("base64")}`;
@@ -101,9 +118,17 @@ export class TribufuClient extends TribufuApi {
     }
 
     /**
+     * Get the client id.
+     * @returns string
+     */
+    public getClientId(): string {
+        return this.clientId;
+    }
+
+    /**
      * Login using an authorization code.
      * @param authorizationCode
-     * @returns
+     * @returns boolean
      */
     public async authorizationLogin(authorizationCode: string): Promise<boolean> {
         const response = await this.getToken("authorization_code", authorizationCode, null, null);
@@ -120,7 +145,7 @@ export class TribufuClient extends TribufuApi {
     /**
      * Login using a device code.
      * @param deviceCode
-     * @returns
+     * @returns boolean
      */
     public async deviceLogin(deviceCode: string): Promise<boolean> {
         const response = await this.getToken("device_code", deviceCode, null, null);
@@ -138,7 +163,7 @@ export class TribufuClient extends TribufuApi {
      * Login using a username and password.
      * @param username
      * @param password
-     * @returns
+     * @returns boolean
      */
     public async passwordLogin(username: string, password: string): Promise<boolean> {
         const response = await this.getToken("password", password, null, username);
@@ -156,7 +181,7 @@ export class TribufuClient extends TribufuApi {
      * Login using a passkey.
      * @param username
      * @param passkey
-     * @returns
+     * @returns boolean
      */
     public async passkeyLogin(username: string, passkey: string): Promise<boolean> {
         const response = await this.getToken("passkey", passkey, null, username);
@@ -174,7 +199,7 @@ export class TribufuClient extends TribufuApi {
      * Get a token for a client application.
      * @param subjectKey
      * @param subjectValue
-     * @returns
+     * @returns boolean
      */
     public async clientLogin(subjectKey: string | null, subjectValue: string | null): Promise<boolean> {
         const response = await this.getToken("client_credentials", null, subjectKey, subjectValue);
@@ -191,7 +216,7 @@ export class TribufuClient extends TribufuApi {
     /**
      * Get a new access token using a refresh token.
      * @param refreshToken
-     * @returns
+     * @returns boolean
      */
     public async refreshToken(): Promise<boolean> {
         if (!this.options.refreshToken) {
@@ -211,7 +236,7 @@ export class TribufuClient extends TribufuApi {
 
     /**
      * Get information about a access token.
-     * @returns
+     * @returns boolean
      */
     public async instrospectToken(): Promise<OAuth2IntrospectionResponse | null> {
         if (!this.options.accessToken) {
@@ -236,7 +261,7 @@ export class TribufuClient extends TribufuApi {
 
     /**
      * Revoke a refresh token.
-     * @returns
+     * @returns boolean
      */
     public async revokeToken(): Promise<boolean> {
         if (!this.options.refreshToken) {
@@ -261,6 +286,10 @@ export class TribufuClient extends TribufuApi {
         return true;
     }
 
+    /**
+     * Check if the current access token is valid.
+     * @returns boolean
+     */
     public async isTokenValid(): Promise<boolean> {
         const response = await this.instrospectToken();
 
@@ -277,7 +306,7 @@ export class TribufuClient extends TribufuApi {
      * @param grantValue
      * @param subjectKey
      * @param subjectValue
-     * @returns
+     * @returns OAuth2TokenResponse | null
      */
     protected async getToken(grantType: OAuth2GrantType, grantValue: string | null, subjectKey: string | null, subjectValue: string | null): Promise<OAuth2TokenResponse | null> {
         const requestBody: OAuth2TokenRequest = {
@@ -305,7 +334,7 @@ export class TribufuClient extends TribufuApi {
 
     /**
      * Get information about the current user.
-     * @returns
+     * @returns User | null
      */
     public async getUserInfo(): Promise<User | null> {
         if (!this.options.refreshToken) {

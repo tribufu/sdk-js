@@ -11,8 +11,26 @@ import { TribufuApi } from "./api";
  * - A bot give you read and write access to the Tribufu API.
  */
 export class TribufuBot extends TribufuApi {
+    private readonly botId: string;
+
     constructor(token: string) {
+        const payload = TribufuApi.parseToken(token);
+
+        if (!payload) {
+            throw new Error("Invalid token");
+        }
+
+        if (payload.type !== "bot") {
+            throw new Error("Invalid token type");
+        }
+
+        if (!payload.bot_id) {
+            throw new Error("Invalid token payload");
+        }
+
         super({ accessToken: token });
+
+        this.botId = payload.bot_id;
     }
 
     /**
@@ -36,5 +54,13 @@ export class TribufuBot extends TribufuApi {
         }
 
         return null;
+    }
+
+    /**
+     * Get the bot id.
+     * @returns string
+     */
+    public getBotId(): string {
+        return this.botId;
     }
 }

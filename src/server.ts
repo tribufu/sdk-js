@@ -48,6 +48,14 @@ export class TribufuServer extends TribufuClient {
     }
 
     /**
+     * Get the server id.
+     * @returns string
+     */
+    public getServerId(): string {
+        return this.serverId;
+    }
+
+    /**
      * Get a list of connected users.
      * @returns
      */

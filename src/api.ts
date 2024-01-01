@@ -3,12 +3,13 @@
 import { HeaderMap } from "./http";
 import { JavaScriptRuntime } from "./node";
 import { TribufuApiOptions } from "./options";
+import { TribufuBot } from "./bot";
 import { TribufuClient } from "./client";
 import { TribufuServer } from "./server";
 import axios, { AxiosInstance } from "axios";
-
-export const TRIBUFU_VERSION = "0.0.0";
-export const TRIBUFU_API_URL = "https://api.tribufu.com";
+import jwt from "jsonwebtoken";
+import { TokenPayload } from "./token";
+import { TRIBUFU_API_URL, TRIBUFU_VERSION } from ".";
 
 /**
  * **Tribufu API**
@@ -42,6 +43,10 @@ export class TribufuApi {
         this.http = http;
     }
 
+    /**
+     * Create a TribufuApi with the default options.
+     * @returns
+     */
     public static default(): TribufuApi {
         return new TribufuApi({});
     }
@@ -205,6 +210,26 @@ export class TribufuApi {
      */
     public static isNode(): boolean {
         return TribufuApi.detectRuntime() === JavaScriptRuntime.Node;
+    }
+
+    /**
+     * Extract the payload from a Tribufu token.
+     * @param token
+     * @returns TokenPayload | null
+     */
+    protected static parseToken(token: string): TokenPayload | null {
+        try {
+            const payload = jwt.decode(token);
+
+            if (!payload) {
+                return null;
+            }
+
+            return payload as TokenPayload;
+        }
+        catch (error) {
+            return null;
+        }
     }
 
     /**
@@ -402,42 +427,5 @@ export class TribufuApi {
         }
 
         return responseBody;
-    }
-
-}
-
-/**
- * **Tribufu Bot**
- *
- * To authenticate a bot you need to use the bot token obtained from the Tribufu Developer Portal.
- *
- * - A bot is a special type of user account.
- * - A bot give you read and write access to the Tribufu API.
- */
-export class TribufuBot extends TribufuApi {
-    constructor(token: string) {
-        super({ accessToken: token });
-    }
-
-    /**
-     * Try to create a TribufuBot from environment variables.
-     *
-     * - This will only work if the environment variables are set.
-     *
-     * @param prefix A prefix for the environment variables.
-     * @returns TribufuBot | null
-     * @example
-     * ```ts
-     * const bot = TribufuBot.fromEnv("TRIBUFU_"); // process.env.TRIBUFU_BOT_TOKEN
-     * ```
-     */
-    public static override fromEnv(prefix: string = ""): TribufuBot | null {
-        const token = process.env[`${prefix}BOT_TOKEN`];
-
-        if (token) {
-            return TribufuApi.withBot(token);
-        }
-
-        return null;
     }
 }
