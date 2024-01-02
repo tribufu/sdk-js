@@ -1,6 +1,6 @@
 // Copyright (c) Tribufu. All Rights Reserved.
 
-import { HeaderMap } from "./http";
+import { HeaderMap, TribufuHttp } from "./http";
 import { JavaScriptRuntime } from "./node";
 import { TribufuApiOptions } from "./options";
 import { TribufuBot } from "./bot";
@@ -24,39 +24,17 @@ import snakecaseKeys from "snakecase-keys";
  * - A client give you read and write access to the Tribufu API as a client application.
  */
 export class TribufuApi {
+    protected readonly http: TribufuHttp;
     protected readonly options: TribufuApiOptions;
-    protected readonly http: AxiosInstance;
 
     constructor(options?: TribufuApiOptions | null) {
         this.options = options || {};
 
-        let http = axios.create({
-            baseURL: TribufuApi.getBaseUrl(),
+        this.http = new TribufuHttp({
+            baseUrl: TribufuApi.getBaseUrl(),
             headers: TribufuApi.defaultHeaders(),
+            logEnabled: TribufuApi.debugEnabled(),
         });
-
-        http.interceptors.request.use((req) => {
-            if (TribufuApi.debugEnabled()) {
-                console.log(`(TribufuApi) ${req.method?.toUpperCase()} ${req.baseURL}${req.url}`);
-            }
-
-            const contentType = req.headers["Content-Type"];
-            if (req.data && (contentType === "application/json" || contentType === "application/x-www-form-urlencoded")) {
-                req.data = snakecaseKeys(req.data);
-            }
-
-            return req;
-        });
-
-        http.interceptors.response.use((res) => {
-            if (res.data) {
-                res.data = camelcaseKeys(res.data);
-            }
-
-            return res;
-        });
-
-        this.http = http;
     }
 
     /**
@@ -236,97 +214,13 @@ export class TribufuApi {
     }
 
     /**
-     * Get a resource from the Tribufu API.
-     * @returns T | null
-     */
-    protected async get<T>(path: string, headers?: HeaderMap | null): Promise<T | null> {
-        try {
-            const requestHeaders = headers || this.getHeaders();
-            const response = await this.http.get(path, { headers: requestHeaders });
-
-            if (response.status !== 200) {
-                return null;
-            }
-
-            return response.data as T;
-        } catch (error) {
-            return null;
-        }
-    }
-
-    /**
-     * Create a resource to the Tribufu API.
-     * @param path
-     * @param body
-     * @param headers
-     * @returns T | null
-     */
-    protected async post<S, T>(path: string, body: S, headers?: HeaderMap | null): Promise<T | null> {
-        try {
-            const requestHeaders = headers || this.getHeaders();
-            const response = await this.http.post(path, body, { headers: requestHeaders });
-
-            if (response.status !== 200) {
-                return null;
-            }
-
-            return response.data as T;
-        } catch (error) {
-            return null;
-        }
-    }
-
-    /**
-     * Update a resource on the Tribufu API.
-     * @param path
-     * @param body
-     * @param headers
-     * @returns T | null
-     */
-    protected async put<S, T>(path: string, body: S, headers?: HeaderMap | null): Promise<T | null> {
-        try {
-            const requestHeaders = headers || this.getHeaders();
-            const response = await this.http.put(path, body, { headers: requestHeaders });
-
-            if (response.status !== 200) {
-                return null;
-            }
-
-            return response.data as T;
-        } catch (error) {
-            return null;
-        }
-    }
-
-    /**
-     * Delete a resource from the Tribufu API.
-     * @param path
-     * @param headers
-     * @returns T | null
-     */
-    protected async delete<T>(path: string, headers?: HeaderMap | null): Promise<T | null> {
-        try {
-            const requestHeaders = headers || this.getHeaders();
-            const response = await this.http.delete(path, { headers: requestHeaders });
-
-            if (response.status !== 200) {
-                return null;
-            }
-
-            return response.data as T;
-        } catch (error) {
-            return null;
-        }
-    }
-
-    /**
      * Get games from the Tribufu API.
      * @param page
      * @returns Game[]
      */
     public async getGames(page: number = 1): Promise<any[]> {
         const headers = this.getHeaders();
-        const responseBody = await this.get<any[]>(`/v1/packages?page=${page}`, headers);
+        const responseBody = await this.http.get<any[]>(`/v1/packages?page=${page}`, headers);
 
         if (!responseBody) {
             return [];
@@ -342,7 +236,7 @@ export class TribufuApi {
      */
     public async getGameyId(id: string): Promise<any | null> {
         const headers = this.getHeaders();
-        const responseBody = await this.get<any>(`/v1/packages/${id}`, headers);
+        const responseBody = await this.http.get<any>(`/v1/packages/${id}`, headers);
 
         if (!responseBody) {
             return null;
@@ -358,7 +252,7 @@ export class TribufuApi {
      */
     public async getServers(page: number = 1): Promise<any[]> {
         const headers = this.getHeaders();
-        const responseBody = await this.get<any[]>(`/v1/servers?page=${page}`, headers);
+        const responseBody = await this.http.get<any[]>(`/v1/servers?page=${page}`, headers);
 
         if (!responseBody) {
             return [];
@@ -387,7 +281,7 @@ export class TribufuApi {
      */
     public async getServerById(id: string): Promise<any> {
         const headers = this.getHeaders()
-        const responseBody = await this.get<any>(`/v1/servers/${id}`, headers);
+        const responseBody = await this.http.get<any>(`/v1/servers/${id}`, headers);
 
         if (!responseBody) {
             return null;
@@ -403,7 +297,7 @@ export class TribufuApi {
      */
     public async getServerByAddress(address: string): Promise<any> {
         const headers = this.getHeaders();
-        const responseBody = await this.get(`/v1/servers/address/${address}`, headers);
+        const responseBody = await this.http.get(`/v1/servers/address/${address}`, headers);
 
         if (!responseBody) {
             return null;

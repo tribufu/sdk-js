@@ -251,7 +251,7 @@ export class TribufuClient extends TribufuApi {
 
         const url = `/v1/oauth2/introspect`;
         const headers = this.getOAuthHeaders();
-        const responseBody = await this.post<OAuth2IntrospectionRequest, OAuth2IntrospectionResponse>(url, requestBody, headers);
+        const responseBody = await this.http.post<OAuth2IntrospectionRequest, OAuth2IntrospectionResponse>(url, requestBody, headers);
 
         if (!responseBody) {
             return null;
@@ -276,7 +276,7 @@ export class TribufuClient extends TribufuApi {
 
         const url = `/v1/oauth2/revoke`;
         const headers = this.getOAuthHeaders();
-        const responseBody = await this.post<OAuth2IntrospectionRequest, OAuth2IntrospectionResponse>(url, requestBody, headers);
+        const responseBody = await this.http.post<OAuth2IntrospectionRequest, OAuth2IntrospectionResponse>(url, requestBody, headers);
 
         if (!responseBody) {
             return false;
@@ -324,7 +324,7 @@ export class TribufuClient extends TribufuApi {
         const params = subjectKey && subjectValue ? `?${subjectKey}=${subjectValue}` : "";
         const url = `/v1/oauth2/token${params}`;
         const headers = this.getOAuthHeaders();
-        const responseBody = await this.post<OAuth2TokenRequest, OAuth2TokenResponse>(url, requestBody, headers);
+        const responseBody = await this.http.post<OAuth2TokenRequest, OAuth2TokenResponse>(url, requestBody, headers);
 
         if (!responseBody) {
             return null;
@@ -338,19 +338,17 @@ export class TribufuClient extends TribufuApi {
      * @returns User | null
      */
     public async getUserInfo(): Promise<User | null> {
-        if (!this.options.refreshToken) {
+        if (!this.options.accessToken) {
             return null;
         }
 
         const headers = this.getHeaders();
-        const response = await this.http.get(`/v1/oauth2/userinfo`, { headers });
+        const responseBody = await this.http.get<User>(`/v1/oauth2/userinfo`, headers);
 
-        if (response.status !== 200) {
+        if (!responseBody) {
             return null;
         }
 
-        const user = response.data as User;
-
-        return user;
+        return responseBody;
     }
 }
