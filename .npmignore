@@ -1,8 +1,7 @@
+examples/
 node_modules/
 
-.DS_Store
 .editorconfig
-.env
+.env.example
 .gitattributes
 .gitignore
-desktop.ini
