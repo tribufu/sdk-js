@@ -234,7 +234,7 @@ export class TribufuApi {
      * @param id
      * @returns Game | null
      */
-    public async getGameyId(id: string): Promise<any | null> {
+    public async getGameById(id: string): Promise<any | null> {
         const headers = this.getHeaders();
         const responseBody = await this.http.get<any>(`/v1/packages/${id}`, headers);
 
@@ -298,6 +298,98 @@ export class TribufuApi {
     public async getServerByAddress(address: string): Promise<any> {
         const headers = this.getHeaders();
         const responseBody = await this.http.get(`/v1/servers/address/${address}`, headers);
+
+        if (!responseBody) {
+            return null;
+        }
+
+        return responseBody;
+    }
+
+    /**
+     * Get a user by id from the Tribufu API.
+     * @param id
+     * @returns User | null
+     */
+    public async getUserById(id: string): Promise<any> {
+        const headers = this.getHeaders();
+        const responseBody = await this.http.get(`/v1/users/${id}`, headers);
+
+        if (!responseBody) {
+            return null;
+        }
+
+        return responseBody;
+    }
+
+    /**
+     * Get a user by uuid from the Tribufu API.
+     * @param uuid
+     * @returns User[]
+     */
+    public async getUserByUuid(uuid: string): Promise<any[]> {
+        return await this.getUserByKey("uuid", uuid);
+    }
+
+    /**
+     * Get a user by name from the Tribufu API.
+     * @param uuid
+     * @returns User[]
+     */
+    public async getUserByName(name: string): Promise<any[]> {
+        return await this.getUserByKey("name", name);
+    }
+
+    /**
+     * Get a user by email from the Tribufu API.
+     * @param uuid
+     * @returns User[]
+     */
+    public async getUserByEmail(email: string): Promise<any[]> {
+        return await this.getUserByKey("email", email);
+    }
+
+    /**
+     * Get a user by custom key from the Tribufu API.
+     * @param key
+     * @param value
+     * @returns User[]
+     */
+    private async getUserByKey(key: string, value: string): Promise<any[]> {
+        const headers = this.getHeaders();
+        const responseBody = await this.http.get<any[]>(`/v1/users/?${key}=${value}`, headers);
+
+        if (!responseBody) {
+            return [];
+        }
+
+        return responseBody;
+    }
+
+    /**
+     * Get all servers for a user from the Tribufu API.
+     * @param userId
+     * @returns Server[]
+     */
+    public async getUserServers(userId: string): Promise<any[]> {
+        const headers = this.getHeaders();
+        const responseBody = await this.http.get<any[]>(`/v1/users/${userId}/servers`, headers);
+
+        if (!responseBody) {
+            return [];
+        }
+
+        return responseBody;
+    }
+
+    /**
+     * Get a oauth2 client by id from the Tribufu API.
+     * @param id
+     * @returns Client | null
+     */
+    protected async getClientById(id: string): Promise<any> {
+        const headers = this.getHeaders();
+        const responseBody = await this.http.get(`/v1/oauth2/clients/${id}`, headers);
 
         if (!responseBody) {
             return null;

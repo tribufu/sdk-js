@@ -334,6 +334,14 @@ export class TribufuClient extends TribufuApi {
     }
 
     /**
+     * Get information about the current client.
+     * @returns Client | null
+     */
+    public async getClientInfo(): Promise<User | null> {
+        return this.getClientById(this.clientId);
+    }
+
+    /**
      * Get information about the current user.
      * @returns User | null
      */
