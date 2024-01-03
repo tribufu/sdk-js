@@ -6,13 +6,14 @@
     "author": "Tribufu <contact@Tribufu.com>",
     "license": "MIT",
     "type": "module",
+    "types": "./build/index.d.ts",
     "exports": {
         "import": "./build/index.mjs",
-        "require": "./build//index.cjs"
+        "require": "./build/index.cjs"
     },
     "scripts": {
         "clean": "rimraf build",
-        "build": "yarn clean && tsc && node scripts/esbuild.js",
+        "build": "npm run clean && tsc && node scripts/esbuild.js",
         "prepare": "npm run build"
     },
     "dependencies": {
