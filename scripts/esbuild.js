@@ -9,7 +9,7 @@ const baseConfig = {
     target: "node18",
     bundle: true,
     minify: true,
-    sourcemap: false,
+    sourcemap: true,
     legalComments: "linked",
     plugins: [nodeExternalsPlugin()],
 };
