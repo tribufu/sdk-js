@@ -4,7 +4,7 @@
  * The version of the Tribufu SDK.
  * @type {string}
  */
-export const TRIBUFU_VERSION = "0.1.1";
+export const TRIBUFU_VERSION = "0.1.2";
 
 /**
  * The default Tribufu API URL.
