@@ -65,10 +65,10 @@ export class TribufuClient extends TribufuApi {
      * // process.env.TRIBUFU_CLIENT_ID
      * // process.env.TRIBUFU_CLIENT_SECRET
      * const cookies = { "access_token": "...", "refresh_token": "..." };
-     * const client = TribufuClient.fromEnvAndCookies(cookies, "TRIBUFU_");
+     * const client = TribufuClient.fromCookies(cookies, "TRIBUFU_");
      * ```
      */
-    public static fromEnvAndCookies(cookies: CookieMap, prefix: string = ""): TribufuClient | null {
+    public static fromCookies(cookies: CookieMap, prefix: string = ""): TribufuClient | null {
         const client = TribufuClient.fromEnv(prefix);
         const accessToken = cookies["access_token"] || null;
         const refreshToken = cookies["refresh_token"] || null;
