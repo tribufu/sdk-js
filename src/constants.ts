@@ -1,12 +1,10 @@
 // Copyright (c) Tribufu. All Rights Reserved.
 
-import packageJson from "../package.json";
-
 /**
  * The version of the Tribufu SDK.
  * @type {string}
  */
-export const TRIBUFU_VERSION = packageJson.version;
+export const TRIBUFU_VERSION = "0.1.1";
 
 /**
  * The default Tribufu API URL.
