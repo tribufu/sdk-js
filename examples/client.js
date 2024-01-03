@@ -5,5 +5,10 @@ import { TribufuClient } from '../build/index.mjs';
 
 dotenv.config();
 
-const client = TribufuClient.fromEnv("TRIBUFU");
-const clientId = client.getClientId();
+async function main() {
+    const client = TribufuClient.fromEnv("TRIBUFU");
+    const clientInfo = await client.getClientInfo();
+    console.log(clientInfo);
+}
+
+main();
