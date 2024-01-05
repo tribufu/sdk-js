@@ -1,17 +1,11 @@
 // Copyright (c) Tribufu. All Rights Reserved.
 
-import { HeaderMap, TribufuHttp } from "./http";
+import { HttpHeaders, HttpClient } from "@tribufu/mintaka";
 import { JavaScriptRuntime } from "./node";
 import { TribufuApiOptions } from "./options";
-import { TribufuBot } from "./bot";
-import { TribufuClient } from "./client";
-import { TribufuServer } from "./server";
-import axios, { AxiosInstance } from "axios";
 import jwt from "jsonwebtoken";
 import { TokenPayload } from "./token";
 import { TRIBUFU_API_URL, TRIBUFU_VERSION } from ".";
-import camelcaseKeys from "camelcase-keys";
-import snakecaseKeys from "snakecase-keys";
 
 /**
  * **Tribufu API**
@@ -24,13 +18,13 @@ import snakecaseKeys from "snakecase-keys";
  * - A client give you read and write access to the Tribufu API as a client application.
  */
 export class TribufuApi {
-    protected readonly http: TribufuHttp;
+    protected readonly http: HttpClient;
     protected readonly options: TribufuApiOptions;
 
     constructor(options?: TribufuApiOptions | null) {
         this.options = options || {};
 
-        this.http = new TribufuHttp({
+        this.http = new HttpClient({
             baseUrl: TribufuApi.getBaseUrl(),
             headers: TribufuApi.defaultHeaders(),
             logEnabled: TribufuApi.debugEnabled(),
@@ -129,12 +123,10 @@ export class TribufuApi {
      * Get the default headers for the Tribufu API.
      * @returns HeaderMap
      */
-    private static defaultHeaders(): HeaderMap {
-        const headers = {
-            "X-Tribufu-Language": "javascript",
-            "X-Tribufu-Version": TRIBUFU_VERSION,
-        };
-
+    private static defaultHeaders(): HttpHeaders {
+        const headers = new HttpHeaders();
+        headers.set("X-Tribufu-Language", "javascript");
+        headers.set("X-Tribufu-Version", TRIBUFU_VERSION);
         return headers;
     }
 
@@ -197,16 +189,16 @@ export class TribufuApi {
      * Get current headers with the api key or access token.
      * @returns HeaderMap
      */
-    protected getHeaders(): HeaderMap {
-        let headers: HeaderMap = {};
+    protected getHeaders(): HttpHeaders {
+        let headers = TribufuApi.defaultHeaders();
 
         if (this.options.apiKey) {
-            headers["Authorization"] = `ApiKey ${this.options.apiKey}`;
+            headers.set("Authorization", `ApiKey ${this.options.apiKey}`);
             return headers;
         }
 
         if (this.options.accessToken) {
-            headers["Authorization"] = `Bearer ${this.options.accessToken}`;
+            headers.set("Authorization", `Bearer ${this.options.accessToken}`);
             return headers;
         }
 

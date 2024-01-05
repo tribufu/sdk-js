@@ -1,6 +1,5 @@
 // Copyright (c) Tribufu. All Rights Reserved.
 
-import { TribufuApi } from "./api";
 import { TribufuClient } from "./client";
 
 /**

@@ -1,7 +1,7 @@
 // Copyright (c) Tribufu. All Rights Reserved.
 
-import { CookieMap, HeaderMap } from "./http";
-import { OAuth2GrantType, OAuth2IntrospectionRequest, OAuth2IntrospectionResponse, OAuth2TokenRequest, OAuth2TokenResponse } from "./oauth2";
+import { HttpCookieMap, HttpHeaders } from "@tribufu/mintaka";
+import { OAuth2GrantType, OAuth2IntrospectionRequest, OAuth2IntrospectionResponse, OAuth2TokenRequest, OAuth2TokenResponse } from "@tribufu/mintaka";
 import { TribufuApi } from "./api";
 import { User } from "./models/user";
 
@@ -68,7 +68,7 @@ export class TribufuClient extends TribufuApi {
      * const client = TribufuClient.fromCookies(cookies, "TRIBUFU_");
      * ```
      */
-    public static fromCookies(cookies: CookieMap, prefix: string = ""): TribufuClient | null {
+    public static fromCookies(cookies: HttpCookieMap, prefix: string = ""): TribufuClient | null {
         const client = TribufuClient.fromEnv(prefix);
         const accessToken = cookies["access_token"] || null;
         const refreshToken = cookies["refresh_token"] || null;
@@ -109,9 +109,9 @@ export class TribufuClient extends TribufuApi {
 
     /**
      * Get the headers for a oauth2 request.
-     * @returns HeaderMap
+     * @returns HttpHeaders
      */
-    private getOAuthHeaders(): HeaderMap {
+    private getOAuthHeaders(): HttpHeaders {
         let headers = this.getHeaders();
         headers["Authorization"] = `Basic ${Buffer.from(`${this.clientId}:${this.clientSecret}`, "binary").toString("base64")}`;
         headers["Content-Type"] = "application/x-www-form-urlencoded";
