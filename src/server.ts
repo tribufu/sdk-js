@@ -56,6 +56,14 @@ export class TribufuServer extends TribufuClient {
     }
 
     /**
+     * Get information about the current server.
+     * @returns Server | null
+     */
+    public async getServerInfo(): Promise<any | null> {
+        return this.getServerById(this.serverId);
+    }
+
+    /**
      * Get a list of connected users.
      * @returns
      */
