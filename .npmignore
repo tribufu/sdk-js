@@ -2,6 +2,7 @@ examples/
 node_modules/
 
 .editorconfig
+.env
 .env.example
 .gitattributes
 .gitignore
