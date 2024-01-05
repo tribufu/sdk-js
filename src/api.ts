@@ -2,10 +2,10 @@
 
 import { HttpHeaders, HttpClient } from "@tribufu/mintaka";
 import { JavaScriptRuntime } from "./node";
-import { TribufuApiOptions } from "./options";
-import jwt from "jsonwebtoken";
+import { JsonCasing, JwtDecoder } from "@tribufu/mintaka";
 import { TokenPayload } from "./token";
 import { TRIBUFU_API_URL, TRIBUFU_VERSION } from ".";
+import { TribufuApiOptions } from "./options";
 
 /**
  * **Tribufu API**
@@ -28,6 +28,8 @@ export class TribufuApi {
             baseUrl: TribufuApi.getBaseUrl(),
             headers: TribufuApi.defaultHeaders(),
             logEnabled: TribufuApi.debugEnabled(),
+            jsonRequestCasing: JsonCasing.SnakeCase,
+            jsonResponseCasing: JsonCasing.CamelCase,
         });
     }
 
@@ -172,7 +174,7 @@ export class TribufuApi {
      */
     protected static parseToken(token: string): TokenPayload | null {
         try {
-            const payload = jwt.decode(token);
+            const payload = JwtDecoder.decode(token);
 
             if (!payload) {
                 return null;
