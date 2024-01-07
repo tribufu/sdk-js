@@ -240,7 +240,7 @@ export class TribufuApi {
     }
 
     /**
-     * Get a game from the Tribufu API.
+     * Get servers from the Tribufu API.
      * @param page
      * @returns Server[]
      */
@@ -384,6 +384,38 @@ export class TribufuApi {
     protected async getClientById(id: string): Promise<any> {
         const headers = this.getHeaders();
         const responseBody = await this.http.get(`/v1/oauth2/clients/${id}`, headers);
+
+        if (!responseBody) {
+            return null;
+        }
+
+        return responseBody;
+    }
+
+    /**
+     * Get files from the Tribufu API.
+     * @param page
+     * @returns File[]
+     */
+    public async getFiles(page: number = 1): Promise<any[]> {
+        const headers = this.getHeaders();
+        const responseBody = await this.http.get<any[]>(`/v1/files?page=${page}`, headers);
+
+        if (!responseBody) {
+            return [];
+        }
+
+        return responseBody;
+    }
+
+    /**
+     * Get a file by id from the Tribufu API.
+     * @param id
+     * @returns File | null
+     */
+    public async getFileById(id: string): Promise<any> {
+        const headers = this.getHeaders()
+        const responseBody = await this.http.get<any>(`/v1/files/${id}`, headers);
 
         if (!responseBody) {
             return null;
