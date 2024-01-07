@@ -20,7 +20,6 @@ export class TribufuClient extends TribufuApi {
 
     constructor(clientId: string, clientSecret: string) {
         super();
-
         this.clientId = clientId;
         this.clientSecret = clientSecret;
     }
