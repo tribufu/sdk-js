@@ -103,7 +103,7 @@ export class TribufuClient extends TribufuApi {
      * @param tokens
      */
     private setTokensFromResponse(tokens: OAuth2TokenResponse): void {
-        this.setTokens(tokens.accessToken, tokens.refreshToken || null, tokens.expiresIn || null);
+        this.setTokens(tokens.access_token, tokens.refresh_token || null, tokens.expires_in || null);
     }
 
     /**
@@ -245,7 +245,7 @@ export class TribufuClient extends TribufuApi {
 
         const requestBody: OAuth2IntrospectionRequest = {
             token: this.options.accessToken,
-            tokenTypeHint: "access_token",
+            token_type_hint: "access_token",
         }
 
         const url = `/v1/oauth2/introspect`;
@@ -270,7 +270,7 @@ export class TribufuClient extends TribufuApi {
 
         const requestBody: OAuth2IntrospectionRequest = {
             token: this.options.refreshToken,
-            tokenTypeHint: "refresh_token",
+            token_type_hint: "refresh_token",
         }
 
         const url = `/v1/oauth2/revoke`;
@@ -310,14 +310,14 @@ export class TribufuClient extends TribufuApi {
      */
     protected async getToken(grantType: OAuth2GrantType, grantValue: string | null, subjectKey: string | null, subjectValue: string | null): Promise<OAuth2TokenResponse | null> {
         const requestBody: OAuth2TokenRequest = {
-            grantType: grantType,
+            grant_type: grantType,
             code: grantType === "authorization_code" ? grantValue : null,
-            refreshToken: grantType === "refresh_token" ? grantValue : null,
+            refresh_token: grantType === "refresh_token" ? grantValue : null,
             username: grantType === "password" || grantType === "passkey" ? subjectValue : null,
             password: grantType === "password" ? grantValue : null,
             passkey: grantType === "passkey" ? grantValue : null,
-            clientId: this.clientId,
-            clientSecret: this.clientSecret,
+            client_id: this.clientId,
+            client_secret: this.clientSecret,
         }
 
         const params = subjectKey && subjectValue ? `?${subjectKey}=${subjectValue}` : "";
