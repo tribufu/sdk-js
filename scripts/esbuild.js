@@ -8,7 +8,7 @@ const baseConfig = {
     platform: "neutral",
     target: "node18",
     bundle: true,
-    minify: true,
+    minify: false,
     sourcemap: true,
     legalComments: "linked",
     plugins: [nodeExternalsPlugin()],
