@@ -261,7 +261,7 @@ export class TribufuApi {
      * @returns Server | null
      */
     public async getServer(idOrAddress: string): Promise<any> {
-        if (isNaN(idOrAddress as any)) {
+        if (/[.:]/.test(idOrAddress)) {
             return await this.getServerByAddress(idOrAddress);
         }
 
