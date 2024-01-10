@@ -7,8 +7,11 @@ dotenv.config();
 
 async function main() {
     const client = TribufuClient.fromEnv("TRIBUFU");
-    const clientInfo = await client.getClientInfo();
-    console.log(clientInfo);
+
+    if (await client.passwordLogin("", "")) {
+        const userInfo = await client.getUserInfo();
+        console.log(userInfo);
+    }
 }
 
 main();
