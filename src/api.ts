@@ -351,7 +351,7 @@ export class TribufuApi {
      */
     private async getUserByKey(key: string, value: string): Promise<any[]> {
         const headers = this.getHeaders();
-        const responseBody = await this.http.get<any[]>(`/v1/users/?${key}=${value}`, headers);
+        const responseBody = await this.http.get<any[]>(`/v1/users?${key}=${value}`, headers);
 
         if (!responseBody) {
             return [];
