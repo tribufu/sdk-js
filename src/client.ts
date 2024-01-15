@@ -85,7 +85,7 @@ export class TribufuClient extends TribufuApi {
      * @param refreshToken
      * @param expiresIn
      */
-    private setTokens(accessToken: string | null, refreshToken?: string | null, expiresIn?: number | null): void {
+    protected setTokens(accessToken: string | null, refreshToken?: string | null, expiresIn?: number | null): void {
         this.options.accessToken = accessToken;
         this.options.refreshToken = refreshToken || null;
         this.options.expiresIn = expiresIn || null;
@@ -94,7 +94,7 @@ export class TribufuClient extends TribufuApi {
     /**
      * Clear the tokens.
      */
-    private clearTokens(): void {
+    protected clearTokens(): void {
         this.setTokens(null, null, null);
     }
 
