@@ -13,6 +13,12 @@ export const TRIBUFU_VERSION = "0.1.2";
 export const TRIBUFU_API_URL = "https://api.tribufu.com";
 
 /**
+ * The default Tribufu WEB URL.
+ * @type {string}
+ */
+export const TRIBUFU_WEB_URL = "https://www.tribufu.com";
+
+/**
  * The default Tribufu CDN URL.
  * @type {string}
  */
