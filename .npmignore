@@ -8,4 +8,5 @@ src/
 .env.example
 .gitattributes
 .gitignore
-boostrap.*
+bootstrap.ps1
+bootstrap.sh
