@@ -1,4 +1,5 @@
 // Copyright (c) Tribufu. All Rights Reserved.
+// SPDX-License-Identifier: MIT
 
 import { HttpHeaders, HttpClient } from "@tribufu/mintaka";
 import { JavaScriptRuntime } from "./node";
