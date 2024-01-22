@@ -1,5 +1,7 @@
 examples/
 node_modules/
+scripts/
+src/
 
 .editorconfig
 .env
