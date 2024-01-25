@@ -28,7 +28,7 @@ export class TribufuApi {
         this.http = new HttpClient({
             baseUrl: TribufuApi.getBaseUrl(),
             headers: TribufuApi.defaultHeaders(),
-            logEnabled: TribufuApi.debugEnabled(),
+            enableLog: TribufuApi.debugEnabled(),
             jsonRequestCasing: JsonCasing.SnakeCase,
             jsonResponseCasing: JsonCasing.CamelCase,
         });
