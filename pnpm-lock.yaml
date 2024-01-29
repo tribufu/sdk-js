@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@tribufu/mintaka':
-    specifier: 0.1.7
-    version: 0.1.7
+    specifier: 0.1.8
+    version: 0.1.8
 
 devDependencies:
   '@types/node':
@@ -260,8 +260,8 @@ packages:
     dev: true
     optional: true
 
-  /@tribufu/mintaka@0.1.7:
-    resolution: {integrity: sha512-9GZb4WzChV8NCWV9Z3Q2n5TSg7XLZKjv6H2+spCaIhqdolhak/V/IT/3hNoMHmK1Oygm4MXrn6p9lA/DfcUq/w==}
+  /@tribufu/mintaka@0.1.8:
+    resolution: {integrity: sha512-qUvReWlz8irSIbKCTfjFnUnUq7MIgLjnTBPeWv2ayyiwGkf8L3q7qi1Zxuqt3OduOugSOtxYQwXOaClldIMUTQ==}
     dependencies:
       axios: 1.6.4
       camelcase-keys: 9.1.2
