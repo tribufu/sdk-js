@@ -4,7 +4,6 @@
 import { HttpCookieMap, HttpHeaders } from "@tribufu/mintaka";
 import { OAuth2GrantType, OAuth2IntrospectionRequest, OAuth2IntrospectionResponse, OAuth2TokenRequest, OAuth2TokenResponse } from "@tribufu/mintaka";
 import { TribufuApi } from "./api";
-import { User } from "./models/user";
 
 /**
  * **Tribufu Client**
@@ -337,7 +336,7 @@ export class TribufuClient extends TribufuApi {
      * Get information about the current client.
      * @returns Client | null
      */
-    public async getClientInfo(): Promise<User | null> {
+    public async getClientInfo(): Promise<any | null> {
         return this.getClientById(this.clientId);
     }
 
@@ -345,13 +344,13 @@ export class TribufuClient extends TribufuApi {
      * Get information about the current user.
      * @returns User | null
      */
-    public async getUserInfo(): Promise<User | null> {
+    public async getUserInfo(): Promise<any | null> {
         if (!this.options.accessToken) {
             return null;
         }
 
         const headers = this.getHeaders();
-        const responseBody = await this.http.get<User>(`/v1/oauth2/userinfo`, headers);
+        const responseBody = await this.http.get<any>(`/v1/oauth2/userinfo`, headers);
 
         if (!responseBody) {
             return null;
