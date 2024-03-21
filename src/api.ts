@@ -1,11 +1,9 @@
 // Copyright (c) Tribufu. All Rights Reserved.
 // SPDX-License-Identifier: MIT
 
-import { HttpClient } from "./http/client";
-import { HttpHeaders } from "./http/headers";
+import { HttpHeaders, HttpClient } from "@tribufu/mintaka";
 import { JavaScriptRuntime } from "./node";
-import { JwtDecoder } from "./jwt";
-import { JsonCasing } from "./json";
+import { JsonCasing, JwtDecoder } from "@tribufu/mintaka";
 import { TokenPayload } from "./token";
 import { TRIBUFU_API_URL, TRIBUFU_VERSION } from ".";
 import { TribufuApiOptions } from "./options";

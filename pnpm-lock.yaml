@@ -5,47 +5,14 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  axios:
-    specifier: ^1.6.3
-    version: 1.6.4
-  camelcase-keys:
-    specifier: ^9.1.2
-    version: 9.1.2
-  fp-ts:
-    specifier: ^2.16.1
-    version: 2.16.2
-  json-bigint:
-    specifier: ^1.0.0
-    version: 1.0.0
-  jsonwebtoken:
-    specifier: ^9.0.2
-    version: 9.0.2
-  snakecase-keys:
-    specifier: ^5.5.0
-    version: 5.5.0
-  toml:
-    specifier: ^3.0.0
-    version: 3.0.0
-  uuid:
-    specifier: ^9.0.1
-    version: 9.0.1
-  uuidv7:
-    specifier: ^0.6.3
-    version: 0.6.3
+  '@tribufu/mintaka':
+    specifier: 0.1.8
+    version: 0.1.8
 
 devDependencies:
-  '@types/json-bigint':
-    specifier: ^1.0.4
-    version: 1.0.4
-  '@types/jsonwebtoken':
-    specifier: ^9.0.5
-    version: 9.0.6
   '@types/node':
     specifier: ^20.10.6
     version: 20.10.6
-  '@types/uuid':
-    specifier: ^9.0.7
-    version: 9.0.8
   cross-env:
     specifier: ^7.0.3
     version: 7.0.3
@@ -293,24 +260,26 @@ packages:
     dev: true
     optional: true
 
-  /@types/json-bigint@1.0.4:
-    resolution: {integrity: sha512-ydHooXLbOmxBbubnA7Eh+RpBzuaIiQjh8WGJYQB50JFGFrdxW7JzVlyEV7fAXw0T2sqJ1ysTneJbiyNLqZRAag==}
-    dev: true
-
-  /@types/jsonwebtoken@9.0.6:
-    resolution: {integrity: sha512-/5hndP5dCjloafCXns6SZyESp3Ldq7YjH3zwzwczYnjxIT0Fqzk5ROSYVGfFyczIue7IUEj8hkvLbPoLQ18vQw==}
+  /@tribufu/mintaka@0.1.8:
+    resolution: {integrity: sha512-qUvReWlz8irSIbKCTfjFnUnUq7MIgLjnTBPeWv2ayyiwGkf8L3q7qi1Zxuqt3OduOugSOtxYQwXOaClldIMUTQ==}
     dependencies:
-      '@types/node': 20.10.6
-    dev: true
+      axios: 1.6.4
+      camelcase-keys: 9.1.2
+      fp-ts: 2.16.2
+      json-bigint: 1.0.0
+      jsonwebtoken: 9.0.2
+      snakecase-keys: 5.5.0
+      toml: 3.0.0
+      uuid: 9.0.1
+      uuidv7: 0.6.3
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@types/node@20.10.6:
     resolution: {integrity: sha512-Vac8H+NlRNNlAmDfGUP7b5h/KA+AtWIzuXy0E6OyP8f1tCLYAtPvKRRDJjAPqhpCb0t6U2j7/xqAuLEebW2kiw==}
     dependencies:
       undici-types: 5.26.5
-    dev: true
-
-  /@types/uuid@9.0.8:
-    resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
     dev: true
 
   /ansi-regex@5.0.1:
