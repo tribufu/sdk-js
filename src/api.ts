@@ -215,7 +215,7 @@ export class TribufuApi {
      */
     public async getGames(page: number = 1): Promise<any[]> {
         const headers = this.getHeaders();
-        const responseBody = await this.http.get<any[]>(`/v1/packages?page=${page}`, headers);
+        const responseBody = await this.http.get<any[]>(`/v1/games?page=${page}`, headers);
 
         if (!responseBody) {
             return [];
@@ -231,7 +231,7 @@ export class TribufuApi {
      */
     public async getGameById(id: string): Promise<any | null> {
         const headers = this.getHeaders();
-        const responseBody = await this.http.get<any>(`/v1/packages/${id}`, headers);
+        const responseBody = await this.http.get<any>(`/v1/games/${id}`, headers);
 
         if (!responseBody) {
             return null;
@@ -291,8 +291,12 @@ export class TribufuApi {
      * @returns Server | null
      */
     public async getServerByAddress(address: string): Promise<any> {
+        const parts = address.split(":");
+        const hostOrAddress = parts[0];
+        const queryPort = parts[1];
+
         const headers = this.getHeaders();
-        const responseBody = await this.http.get(`/v1/servers/address/${address}`, headers);
+        const responseBody = await this.http.get(`/v1/servers/?address=${hostOrAddress}&query_port=${queryPort}`, headers);
 
         if (!responseBody) {
             return null;
@@ -336,15 +340,6 @@ export class TribufuApi {
     }
 
     /**
-     * Get a user by email from the Tribufu API.
-     * @param uuid
-     * @returns User[]
-     */
-    public async getUserByEmail(email: string): Promise<any[]> {
-        return await this.getUserByKey("email", email);
-    }
-
-    /**
      * Get a user by custom key from the Tribufu API.
      * @param key
      * @param value
@@ -353,6 +348,54 @@ export class TribufuApi {
     private async getUserByKey(key: string, value: string): Promise<any[]> {
         const headers = this.getHeaders();
         const responseBody = await this.http.get<any[]>(`/v1/users?${key}=${value}`, headers);
+
+        if (!responseBody) {
+            return [];
+        }
+
+        return responseBody;
+    }
+
+    /**
+     * Get all groups for a user from the Tribufu API.
+     * @param userId
+     * @returns Group[]
+     */
+    public async getUserGroups(userId: string): Promise<any[]> {
+        const headers = this.getHeaders();
+        const responseBody = await this.http.get<any[]>(`/v1/users/${userId}/groups`, headers);
+
+        if (!responseBody) {
+            return [];
+        }
+
+        return responseBody;
+    }
+
+    /**
+     * Get all games for a user from the Tribufu API.
+     * @param userId
+     * @returns Game[]
+     */
+    public async getUserGames(userId: string): Promise<any[]> {
+        const headers = this.getHeaders();
+        const responseBody = await this.http.get<any[]>(`/v1/users/${userId}/games`, headers);
+
+        if (!responseBody) {
+            return [];
+        }
+
+        return responseBody;
+    }
+
+    /**
+     * Get all punishments for a user from the Tribufu API.
+     * @param userId
+     * @returns Punishment[]
+     */
+    public async getUserPunishments(userId: string): Promise<any[]> {
+        const headers = this.getHeaders();
+        const responseBody = await this.http.get<any[]>(`/v1/users/${userId}/punishments`, headers);
 
         if (!responseBody) {
             return [];
@@ -394,13 +437,13 @@ export class TribufuApi {
     }
 
     /**
-     * Get files from the Tribufu API.
+     * Get packages from the Tribufu API.
      * @param page
-     * @returns File[]
+     * @returns Package[]
      */
-    public async getFiles(page: number = 1): Promise<any[]> {
+    public async getPackages(page: number = 1): Promise<any[]> {
         const headers = this.getHeaders();
-        const responseBody = await this.http.get<any[]>(`/v1/files?page=${page}`, headers);
+        const responseBody = await this.http.get<any[]>(`/v1/packages?page=${page}`, headers);
 
         if (!responseBody) {
             return [];
@@ -410,13 +453,77 @@ export class TribufuApi {
     }
 
     /**
-     * Get a file by id from the Tribufu API.
+     * Get a package by id from the Tribufu API.
      * @param id
-     * @returns File | null
+     * @returns Package | null
      */
-    public async getFileById(id: string): Promise<any> {
+    public async getPackageById(id: string): Promise<any> {
         const headers = this.getHeaders()
-        const responseBody = await this.http.get<any>(`/v1/files/${id}`, headers);
+        const responseBody = await this.http.get<any>(`/v1/packages/${id}`, headers);
+
+        if (!responseBody) {
+            return null;
+        }
+
+        return responseBody;
+    }
+
+    /**
+     * Get clusters from the Tribufu API.
+     * @param page
+     * @returns Cluster[]
+     */
+    public async getClusters(page: number = 1): Promise<any[]> {
+        const headers = this.getHeaders();
+        const responseBody = await this.http.get<any[]>(`/v1/clusters?page=${page}`, headers);
+
+        if (!responseBody) {
+            return [];
+        }
+
+        return responseBody;
+    }
+
+    /**
+     * Get a cluster by id from the Tribufu API.
+     * @param id
+     * @returns Cluster | null
+     */
+    public async getClusterById(id: string): Promise<any> {
+        const headers = this.getHeaders()
+        const responseBody = await this.http.get<any>(`/v1/clusters/${id}`, headers);
+
+        if (!responseBody) {
+            return null;
+        }
+
+        return responseBody;
+    }
+
+    /**
+     * Get subscriptions from the Tribufu API.
+     * @param page
+     * @returns Subscription[]
+     */
+    public async getSubscriptions(page: number = 1): Promise<any[]> {
+        const headers = this.getHeaders();
+        const responseBody = await this.http.get<any[]>(`/v1/subscriptions?page=${page}`, headers);
+
+        if (!responseBody) {
+            return [];
+        }
+
+        return responseBody;
+    }
+
+    /**
+     * Get a subscription by id from the Tribufu API.
+     * @param id
+     * @returns Subscription | null
+     */
+    public async getSubscriptionById(id: string): Promise<any> {
+        const headers = this.getHeaders()
+        const responseBody = await this.http.get<any>(`/v1/subscriptions/${id}`, headers);
 
         if (!responseBody) {
             return null;
