@@ -306,7 +306,7 @@ export class TribufuApi {
         const queryPort = parts[1];
 
         const headers = this.getHeaders();
-        const responseBody = await this.http.get(`/v1/servers/?address=${hostOrAddress}&query_port=${queryPort}`, headers);
+        const responseBody = await this.http.get(`/v1/servers?address=${hostOrAddress}&query_port=${queryPort}`, headers);
 
         if (!responseBody) {
             return null;
