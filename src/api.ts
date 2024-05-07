@@ -312,7 +312,7 @@ export class TribufuApi {
             return null;
         }
 
-        return responseBody;
+        return responseBody[0];
     }
 
     /**
