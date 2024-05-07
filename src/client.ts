@@ -40,14 +40,21 @@ export class TribufuClient extends TribufuApi {
      */
     public static override fromEnv(prefix?: string | null): TribufuClient | null {
         const envPrefix = prefix ? `${prefix}_` : "";
+        const apiKey = process.env[`${envPrefix}API_KEY`];
         const clientId = process.env[`${envPrefix}CLIENT_ID`];
         const clientSecret = process.env[`${envPrefix}CLIENT_SECRET`];
 
-        if (clientId && clientSecret) {
-            return new TribufuClient(clientId, clientSecret);
+        if (!clientId || !clientSecret) {
+            return null;
         }
 
-        return null;
+        const client = new TribufuClient(clientId, clientSecret);
+
+        if (apiKey) {
+            client.setApiKey(apiKey);
+        }
+
+        return client;
     }
 
     /**
@@ -72,7 +79,7 @@ export class TribufuClient extends TribufuApi {
         const accessToken = cookies["access_token"] || null;
         const refreshToken = cookies["refresh_token"] || null;
 
-        if (client) {
+        if (client && accessToken && refreshToken) {
             client.setTokens(accessToken, refreshToken);
         }
 
