@@ -96,6 +96,16 @@ export class TribufuApi {
     }
 
     /**
+     * Set the tokens.
+     * @param accessToken
+     * @param refreshToken
+     * @param expiresIn
+     */
+    protected setApiKey(apiKey: string | null): void {
+        this.options.apiKey = apiKey;
+    }
+
+    /**
      * Check if debug mode is enabled.
      *
      * - Debug mode is enabled if the environment variable `NODE_ENV` is set to `development`.
