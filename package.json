@@ -16,7 +16,8 @@
         "build": "npm run clean && tsc && node scripts/esbuild.js"
     },
     "dependencies": {
-        "@tribufu/mintaka": "0.1.8"
+        "@tribufu/mintaka": "0.1.8",
+        "axios": "^1.7.2"
     },
     "devDependencies": {
         "@types/node": "^20.10.6",
