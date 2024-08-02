@@ -40,7 +40,7 @@ export class TribufuClient extends TribufuApi {
      */
     public static override fromEnv(prefix?: string | null): TribufuClient | null {
         const envPrefix = prefix ? `${prefix}_` : "";
-        const apiKey = process.env[`${envPrefix}API_KEY`];
+        //const apiKey = process.env[`${envPrefix}API_KEY`];
         const clientId = process.env[`${envPrefix}CLIENT_ID`];
         const clientSecret = process.env[`${envPrefix}CLIENT_SECRET`];
 
@@ -50,9 +50,11 @@ export class TribufuClient extends TribufuApi {
 
         const client = new TribufuClient(clientId, clientSecret);
 
+        /*
         if (apiKey) {
             client.setApiKey(apiKey);
         }
+        */
 
         return client;
     }
