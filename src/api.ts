@@ -136,7 +136,7 @@ export class TribufuApi {
      * Get the default headers for the Tribufu API.
      * @returns HeaderMap
      */
-    private static defaultHeaders(): HttpHeaders {
+    protected static defaultHeaders(): HttpHeaders {
         const headers = new HttpHeaders();
         headers.set("X-Tribufu-Language", "javascript");
         headers.set("X-Tribufu-Version", TRIBUFU_VERSION);

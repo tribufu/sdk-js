@@ -127,6 +127,22 @@ export class TribufuClient extends TribufuApi {
     }
 
     /**
+     * Get current headers with the api key or access token.
+     * @returns HeaderMap
+     */
+    protected override getHeaders(): HttpHeaders {
+        let headers = TribufuClient.defaultHeaders();
+        headers.set("Authorization", `Basic ${Buffer.from(`${this.clientId}:${this.clientSecret}`, "binary").toString("base64")}`);
+
+        if (this.options.accessToken) {
+            headers.set("Authorization", `Bearer ${this.options.accessToken}`);
+            return headers;
+        }
+
+        return headers;
+    }
+
+    /**
      * Get the client id.
      * @returns string
      */
