@@ -447,13 +447,13 @@ export class TribufuApi {
     }
 
     /**
-     * Get packages from the Tribufu API.
+     * Get files from the Tribufu API.
      * @param page
-     * @returns Package[]
+     * @returns File[]
      */
-    public async getPackages(page: number = 1): Promise<any[]> {
+    public async getFiles(page: number = 1): Promise<any[]> {
         const headers = this.getHeaders();
-        const responseBody = await this.http.get<any[]>(`/v1/packages?page=${page}`, headers);
+        const responseBody = await this.http.get<any[]>(`/v1/files?page=${page}`, headers);
 
         if (!responseBody) {
             return [];
@@ -463,13 +463,13 @@ export class TribufuApi {
     }
 
     /**
-     * Get a package by id from the Tribufu API.
+     * Get a file by id from the Tribufu API.
      * @param id
-     * @returns Package | null
+     * @returns File | null
      */
-    public async getPackageById(id: string): Promise<any> {
+    public async getFileById(id: string): Promise<any> {
         const headers = this.getHeaders()
-        const responseBody = await this.http.get<any>(`/v1/packages/${id}`, headers);
+        const responseBody = await this.http.get<any>(`/v1/files/${id}`, headers);
 
         if (!responseBody) {
             return null;
