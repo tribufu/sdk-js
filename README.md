@@ -18,6 +18,7 @@ JavaScript SDK to access Tribufu APIs and services.
 
 ## License
 
-This project is licensed under the [MIT License].
+This project is licensed under both the [MIT License] and the [Apache License 2.0].
 
-[MIT License]: https://github.com/Tribufu/TribufuJs/blob/main/LICENSE.txt
+[MIT License]: https://github.com/Tribufu/TribufuJs/blob/main/LICENSE-MIT.txt
+[Apache License 2.0]: https://github.com/Tribufu/TribufuJs/blob/main/LICENSE-APACHE.txt
