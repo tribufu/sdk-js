@@ -1,5 +1,5 @@
 // Copyright (c) Tribufu. All Rights Reserved.
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT AND Apache-2.0
 
 import { HttpCookieMap, HttpHeaders } from "@tribufu/mintaka";
 import { OAuth2GrantType, OAuth2IntrospectionRequest, OAuth2IntrospectionResponse, OAuth2TokenRequest, OAuth2TokenResponse } from "@tribufu/mintaka";

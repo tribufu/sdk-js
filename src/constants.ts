@@ -1,5 +1,5 @@
 // Copyright (c) Tribufu. All Rights Reserved.
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT AND Apache-2.0
 
 /**
  * The version of the Tribufu SDK.
