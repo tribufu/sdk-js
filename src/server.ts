@@ -1,5 +1,5 @@
 // Copyright (c) Tribufu. All Rights Reserved.
-// SPDX-License-Identifier: MIT AND Apache-2.0
+// SPDX-License-Identifier: MIT
 
 import { TribufuClient } from "./client";
 
