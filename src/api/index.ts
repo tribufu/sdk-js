@@ -94,7 +94,7 @@ export class TribufuApi extends TribufuApiGenerated {
      *
      * @returns string
      */
-    private static getBaseUrl(): string {
+    protected static getBaseUrl(): string {
         if (!process) {
             return TRIBUFU_API_URL;
         }
