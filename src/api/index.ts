@@ -44,22 +44,20 @@ export class TribufuApi extends TribufuApiGenerated {
      *
      * - This will only work if the environment variables are set.
      *
-     * @param prefix A prefix for the environment variables.
+     * @param prefix A prefix for the environment variables. Default is `TRIBUFU`.
      * @returns TribufuApi | null
      * @example
      * ```ts
      * // process.env.TRIBUFU_API_KEY
-     * const api = TribufuApi.fromEnv("TRIBUFU");
+     * const api = TribufuApi.fromEnv();
      * ```
      */
     public static fromEnv(prefix?: string | null): TribufuApi | null {
-        const envPrefix = prefix ? `${prefix}_` : "";
-
         if (!process) {
             return null;
         }
 
-        const apiKey = process.env[`${envPrefix}API_KEY`];
+        const apiKey = process.env[`${prefix || "TRIBUFU"}_API_KEY`];
 
         if (apiKey) {
             return TribufuApi.withApiKey(apiKey);
@@ -73,12 +71,12 @@ export class TribufuApi extends TribufuApiGenerated {
      *
      * - This will fallback to the default api if the environment variables are not set.
      *
-     * @param prefix A prefix for the environment variables.
+     * @param prefix A prefix for the environment variables. Default is `TRIBUFU`.
      * @returns TribufuApi | null
      * @example
      * ```ts
      * // process.env.TRIBUFU_API_KEY = null
-     * const api = TribufuApi.fromEnvOrDefault("TRIBUFU_");
+     * const api = TribufuApi.fromEnvOrDefault();
      * ```
      */
     public static fromEnvOrDefault(prefix: string = ""): TribufuApi {
