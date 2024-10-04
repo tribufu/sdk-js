@@ -22,10 +22,24 @@ const moduleConfig = {
     format: "esm",
 };
 
+const moduleMinConfig = {
+    ...moduleConfig,
+    outfile: "build/index.min.mjs",
+    minify: true,
+    sourcemap: true,
+};
+
 const legacyConfig = {
     ...baseConfig,
     outfile: "build/index.cjs",
     format: "cjs",
+};
+
+const legacyMinConfig = {
+    ...legacyConfig,
+    outfile: "build/index.min.cjs",
+    minify: true,
+    sourcemap: true,
 };
 
 async function addCopyrightHeader(filename) {
@@ -44,5 +58,8 @@ async function buildAndAddHeader(config) {
     }
 };
 
-await buildAndAddHeader(moduleConfig);
 await buildAndAddHeader(legacyConfig);
+await buildAndAddHeader(moduleConfig);
+
+//await buildAndAddHeader(legacyMinConfig);
+//await buildAndAddHeader(moduleMinConfig);
