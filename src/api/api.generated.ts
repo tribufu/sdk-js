@@ -63,7 +63,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param body (optional) 
      * @return OK
      */
-    login(body: LoginRequest | undefined): Promise<LoginResponse> {
+    login(body?: LoginRequest | undefined): Promise<LoginResponse> {
         let url_ = this.baseUrl + "/v1/login";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -106,7 +106,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param body (optional) 
      * @return OK
      */
-    register(body: RegisterRequest | undefined): Promise<LoginResponse> {
+    register(body?: RegisterRequest | undefined): Promise<LoginResponse> {
         let url_ = this.baseUrl + "/v1/register";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -149,7 +149,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param body (optional) 
      * @return OK
      */
-    refresh(body: RefreshRequest | undefined): Promise<LoginResponse> {
+    refresh(body?: RefreshRequest | undefined): Promise<LoginResponse> {
         let url_ = this.baseUrl + "/v1/refresh";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -227,7 +227,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param page (optional) 
      * @return OK
      */
-    getClusters(page: number | undefined): Promise<GameServerCluster[]> {
+    getClusters(page?: number | undefined): Promise<GameServerCluster[]> {
         let url_ = this.baseUrl + "/v1/clusters?";
         if (page === null)
             throw new Error("The parameter 'page' cannot be null.");
@@ -311,7 +311,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param page (optional) 
      * @return OK
      */
-    getFiles(page: number | undefined): Promise<File[]> {
+    getFiles(page?: number | undefined): Promise<File[]> {
         let url_ = this.baseUrl + "/v1/files?";
         if (page === null)
             throw new Error("The parameter 'page' cannot be null.");
@@ -474,7 +474,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param page (optional) 
      * @return OK
      */
-    getGameServers(id: string, page: number | undefined): Promise<GameServer[]> {
+    getGameServers(id: string, page?: number | undefined): Promise<GameServer[]> {
         let url_ = this.baseUrl + "/v1/games/{id}/servers?";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -520,7 +520,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param page (optional) 
      * @return OK
      */
-    getGameClusters(id: string, page: number | undefined): Promise<GameServerCluster[]> {
+    getGameClusters(id: string, page?: number | undefined): Promise<GameServerCluster[]> {
         let url_ = this.baseUrl + "/v1/games/{id}/clusters?";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -571,7 +571,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param limit (optional) 
      * @return OK
      */
-    getGroups(uuid: string | undefined, tag: string | undefined, name: string | undefined, email: string | undefined, page: number | undefined, limit: number | undefined): Promise<Group[]> {
+    getGroups(uuid?: string | undefined, tag?: string | undefined, name?: string | undefined, email?: string | undefined, page?: number | undefined, limit?: number | undefined): Promise<Group[]> {
         let url_ = this.baseUrl + "/v1/groups?";
         if (uuid === null)
             throw new Error("The parameter 'uuid' cannot be null.");
@@ -757,7 +757,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param order (optional) 
      * @return OK
      */
-    getLeaderboard(order: LeaderboardOrder | undefined): Promise<LeaderboardItem[]> {
+    getLeaderboard(order?: LeaderboardOrder | undefined): Promise<LeaderboardItem[]> {
         let url_ = this.baseUrl + "/v1/leaderboard?";
         if (order === null)
             throw new Error("The parameter 'order' cannot be null.");
@@ -800,7 +800,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param body (optional) 
      * @return OK
      */
-    search(body: SearchRequest | undefined): Promise<any[]> {
+    search(body?: SearchRequest | undefined): Promise<any[]> {
         let url_ = this.baseUrl + "/v1/search";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -847,7 +847,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param limit (optional) 
      * @return OK
      */
-    getServers(address: string | undefined, query_port: number | undefined, country: string | undefined, page: number | undefined, limit: number | undefined): Promise<GameServer[]> {
+    getServers(address?: string | undefined, query_port?: number | undefined, country?: string | undefined, page?: number | undefined, limit?: number | undefined): Promise<GameServer[]> {
         let url_ = this.baseUrl + "/v1/servers?";
         if (address === null)
             throw new Error("The parameter 'address' cannot be null.");
@@ -1023,7 +1023,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param page (optional) 
      * @return OK
      */
-    getSubscriptions(page: number | undefined): Promise<Subscription[]> {
+    getSubscriptions(page?: number | undefined): Promise<Subscription[]> {
         let url_ = this.baseUrl + "/v1/subscriptions?";
         if (page === null)
             throw new Error("The parameter 'page' cannot be null.");
@@ -1111,7 +1111,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param limit (optional) 
      * @return OK
      */
-    getUsers(uuid: string | undefined, name: string | undefined, email: string | undefined, page: number | undefined, limit: number | undefined): Promise<Profile[]> {
+    getUsers(uuid?: string | undefined, name?: string | undefined, email?: string | undefined, page?: number | undefined, limit?: number | undefined): Promise<Profile[]> {
         let url_ = this.baseUrl + "/v1/users?";
         if (uuid === null)
             throw new Error("The parameter 'uuid' cannot be null.");
@@ -1335,7 +1335,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param limit (optional) 
      * @return OK
      */
-    getUserServers(id: string, page: number | undefined, limit: number | undefined): Promise<GameServer[]> {
+    getUserServers(id: string, page?: number | undefined, limit?: number | undefined): Promise<GameServer[]> {
         let url_ = this.baseUrl + "/v1/users/{id}/servers?";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1467,7 +1467,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param body (optional) 
      * @return OK
      */
-    updateUserProfile(id: string, body: UpdateProfile | undefined): Promise<Profile> {
+    updateUserProfile(id: string, body?: UpdateProfile | undefined): Promise<Profile> {
         let url_ = this.baseUrl + "/v1/users/{id}/profile";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1514,7 +1514,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param symbols (optional) 
      * @return OK
      */
-    generatePassword(length: number | undefined, symbols: boolean | undefined): Promise<HashViewModel> {
+    generatePassword(length?: number | undefined, symbols?: boolean | undefined): Promise<HashViewModel> {
         let url_ = this.baseUrl + "/v1/utils/password?";
         if (length === null)
             throw new Error("The parameter 'length' cannot be null.");
@@ -1561,7 +1561,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param amount (optional) 
      * @return OK
      */
-    generateFlakeId(amount: number | undefined): Promise<string[]> {
+    generateFlakeId(amount?: number | undefined): Promise<string[]> {
         let url_ = this.baseUrl + "/v1/utils/flake?";
         if (amount === null)
             throw new Error("The parameter 'amount' cannot be null.");
@@ -1605,7 +1605,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param amount (optional) 
      * @return OK
      */
-    generateUuid(version: number | undefined, amount: number | undefined): Promise<string[]> {
+    generateUuid(version?: number | undefined, amount?: number | undefined): Promise<string[]> {
         let url_ = this.baseUrl + "/v1/utils/uuid?";
         if (version === null)
             throw new Error("The parameter 'version' cannot be null.");
@@ -1652,7 +1652,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param body (optional) 
      * @return OK
      */
-    convertBase64(body: CryptoViewModel | undefined): Promise<CryptoViewModel> {
+    convertBase64(body?: CryptoViewModel | undefined): Promise<CryptoViewModel> {
         let url_ = this.baseUrl + "/v1/utils/base64";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1695,7 +1695,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param body (optional) 
      * @return OK
      */
-    convertMd5(body: HashViewModel | undefined): Promise<HashViewModel> {
+    convertMd5(body?: HashViewModel | undefined): Promise<HashViewModel> {
         let url_ = this.baseUrl + "/v1/utils/md5";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1738,7 +1738,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param body (optional) 
      * @return OK
      */
-    convertSha256(body: HashViewModel | undefined): Promise<HashViewModel> {
+    convertSha256(body?: HashViewModel | undefined): Promise<HashViewModel> {
         let url_ = this.baseUrl + "/v1/utils/sha256";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1781,7 +1781,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param body (optional) 
      * @return OK
      */
-    generateBcrypt(body: HashViewModel | undefined): Promise<HashViewModel> {
+    generateBcrypt(body?: HashViewModel | undefined): Promise<HashViewModel> {
         let url_ = this.baseUrl + "/v1/utils/bcrypt";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1824,7 +1824,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * @param body (optional) 
      * @return OK
      */
-    generateArgon2(body: HashViewModel | undefined): Promise<HashViewModel> {
+    generateArgon2(body?: HashViewModel | undefined): Promise<HashViewModel> {
         let url_ = this.baseUrl + "/v1/utils/argon2";
         url_ = url_.replace(/[?&]$/, "");
 

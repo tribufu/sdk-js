@@ -26,7 +26,7 @@
             "nullValue": "Null",
             "generateClientClasses": true,
             "generateClientInterfaces": false,
-            "generateOptionalParameters": false,
+            "generateOptionalParameters": true,
             "exportTypes": true,
             "wrapDtoExceptions": false,
             "exceptionClass": "TribufuApiError",
