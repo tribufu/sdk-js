@@ -15,8 +15,11 @@
         "clean": "rimraf build",
         "build": "npm run clean && tsc && node scripts/esbuild.js"
     },
-    "dependencies": {},
+    "peerDependencies": {
+        "@tauri-apps/plugin-http": "^2.0.0"
+    },
     "devDependencies": {
+        "@tauri-apps/plugin-http": "^2.0.0",
         "@types/node": "^20.10.6",
         "dotenv": "^16.3.1",
         "esbuild-node-externals": "^1.12.0",
