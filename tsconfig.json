@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
         "strict": true,
-        "target": "ESNext",
+        "target": "esnext",
         "declaration": true,
         "emitDeclarationOnly": true,
         "noImplicitAny": false,
         "moduleResolution": "Node",
         "esModuleInterop": true,
+        "module": "esnext",
         "allowImportingTsExtensions": true,
         "resolveJsonModule": true,
         "rootDir": "src",
