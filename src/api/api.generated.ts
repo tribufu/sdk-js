@@ -24,7 +24,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    authGetUserInfo(): Promise<UserInfo> {
+    getUserInfo(): Promise<UserInfo> {
         let url_ = this.baseUrl + "/v1/me";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -38,11 +38,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processAuthGetUserInfo(_response);
+            return this.processGetUserInfo(_response);
         });
     }
 
-    protected processAuthGetUserInfo(response: Response): Promise<UserInfo> {
+    protected processGetUserInfo(response: Response): Promise<UserInfo> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -60,10 +60,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return OK
      */
-    authLogin(body: LoginRequest | undefined): Promise<LoginResponse> {
+    login(body: LoginRequest | undefined): Promise<LoginResponse> {
         let url_ = this.baseUrl + "/v1/login";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -81,11 +81,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processAuthLogin(_response);
+            return this.processLogin(_response);
         });
     }
 
-    protected processAuthLogin(response: Response): Promise<LoginResponse> {
+    protected processLogin(response: Response): Promise<LoginResponse> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -103,10 +103,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return OK
      */
-    authRegister(body: RegisterRequest | undefined): Promise<LoginResponse> {
+    register(body: RegisterRequest | undefined): Promise<LoginResponse> {
         let url_ = this.baseUrl + "/v1/register";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -124,11 +124,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processAuthRegister(_response);
+            return this.processRegister(_response);
         });
     }
 
-    protected processAuthRegister(response: Response): Promise<LoginResponse> {
+    protected processRegister(response: Response): Promise<LoginResponse> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -146,10 +146,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return OK
      */
-    authRefresh(body: RefreshRequest | undefined): Promise<LoginResponse> {
+    refresh(body: RefreshRequest | undefined): Promise<LoginResponse> {
         let url_ = this.baseUrl + "/v1/refresh";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -167,11 +167,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processAuthRefresh(_response);
+            return this.processRefresh(_response);
         });
     }
 
-    protected processAuthRefresh(response: Response): Promise<LoginResponse> {
+    protected processRefresh(response: Response): Promise<LoginResponse> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -191,7 +191,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    authLogout(): Promise<void> {
+    logout(): Promise<void> {
         let url_ = this.baseUrl + "/v1/logout";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -204,11 +204,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processAuthLogout(_response);
+            return this.processLogout(_response);
         });
     }
 
-    protected processAuthLogout(response: Response): Promise<void> {
+    protected processLogout(response: Response): Promise<void> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -224,10 +224,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param page (optional)
+     * @param page (optional) 
      * @return OK
      */
-    clustersGetPage(page: number | undefined): Promise<GameServerCluster[]> {
+    getClusters(page: number | undefined): Promise<GameServerCluster[]> {
         let url_ = this.baseUrl + "/v1/clusters?";
         if (page === null)
             throw new Error("The parameter 'page' cannot be null.");
@@ -245,11 +245,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processClustersGetPage(_response);
+            return this.processGetClusters(_response);
         });
     }
 
-    protected processClustersGetPage(response: Response): Promise<GameServerCluster[]> {
+    protected processGetClusters(response: Response): Promise<GameServerCluster[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -269,7 +269,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    clustersGetById(id: string): Promise<GameServerCluster> {
+    getClusterGetById(id: string): Promise<GameServerCluster> {
         let url_ = this.baseUrl + "/v1/clusters/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -286,11 +286,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processClustersGetById(_response);
+            return this.processGetClusterGetById(_response);
         });
     }
 
-    protected processClustersGetById(response: Response): Promise<GameServerCluster> {
+    protected processGetClusterGetById(response: Response): Promise<GameServerCluster> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -308,10 +308,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param page (optional)
+     * @param page (optional) 
      * @return OK
      */
-    filesGetPage(page: number | undefined): Promise<File[]> {
+    getFiles(page: number | undefined): Promise<File[]> {
         let url_ = this.baseUrl + "/v1/files?";
         if (page === null)
             throw new Error("The parameter 'page' cannot be null.");
@@ -329,11 +329,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processFilesGetPage(_response);
+            return this.processGetFiles(_response);
         });
     }
 
-    protected processFilesGetPage(response: Response): Promise<File[]> {
+    protected processGetFiles(response: Response): Promise<File[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -353,7 +353,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    filesGetById(id: string): Promise<File> {
+    getFileById(id: string): Promise<File> {
         let url_ = this.baseUrl + "/v1/files/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -370,11 +370,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processFilesGetById(_response);
+            return this.processGetFileById(_response);
         });
     }
 
-    protected processFilesGetById(response: Response): Promise<File> {
+    protected processGetFileById(response: Response): Promise<File> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -394,7 +394,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    gamesGetAll(): Promise<Game[]> {
+    getGames(): Promise<Game[]> {
         let url_ = this.baseUrl + "/v1/games";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -408,11 +408,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processGamesGetAll(_response);
+            return this.processGetGames(_response);
         });
     }
 
-    protected processGamesGetAll(response: Response): Promise<Game[]> {
+    protected processGetGames(response: Response): Promise<Game[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -432,7 +432,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    gamesGetById(id: string): Promise<Game> {
+    getGameById(id: string): Promise<Game> {
         let url_ = this.baseUrl + "/v1/games/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -449,11 +449,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processGamesGetById(_response);
+            return this.processGetGameById(_response);
         });
     }
 
-    protected processGamesGetById(response: Response): Promise<Game> {
+    protected processGetGameById(response: Response): Promise<Game> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -471,10 +471,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param page (optional)
+     * @param page (optional) 
      * @return OK
      */
-    gamesGetServers(id: string, page: number | undefined): Promise<GameServer[]> {
+    getGameServers(id: string, page: number | undefined): Promise<GameServer[]> {
         let url_ = this.baseUrl + "/v1/games/{id}/servers?";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -495,11 +495,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processGamesGetServers(_response);
+            return this.processGetGameServers(_response);
         });
     }
 
-    protected processGamesGetServers(response: Response): Promise<GameServer[]> {
+    protected processGetGameServers(response: Response): Promise<GameServer[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -517,10 +517,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param page (optional)
+     * @param page (optional) 
      * @return OK
      */
-    gamesGetClusters(id: string, page: number | undefined): Promise<GameServerCluster[]> {
+    getGameClusters(id: string, page: number | undefined): Promise<GameServerCluster[]> {
         let url_ = this.baseUrl + "/v1/games/{id}/clusters?";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -541,11 +541,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processGamesGetClusters(_response);
+            return this.processGetGameClusters(_response);
         });
     }
 
-    protected processGamesGetClusters(response: Response): Promise<GameServerCluster[]> {
+    protected processGetGameClusters(response: Response): Promise<GameServerCluster[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -563,15 +563,15 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param uuid (optional)
-     * @param tag (optional)
-     * @param name (optional)
-     * @param email (optional)
-     * @param page (optional)
-     * @param limit (optional)
+     * @param uuid (optional) 
+     * @param tag (optional) 
+     * @param name (optional) 
+     * @param email (optional) 
+     * @param page (optional) 
+     * @param limit (optional) 
      * @return OK
      */
-    groupsGetPage(uuid: string | undefined, tag: string | undefined, name: string | undefined, email: string | undefined, page: number | undefined, limit: number | undefined): Promise<Group[]> {
+    getGroups(uuid: string | undefined, tag: string | undefined, name: string | undefined, email: string | undefined, page: number | undefined, limit: number | undefined): Promise<Group[]> {
         let url_ = this.baseUrl + "/v1/groups?";
         if (uuid === null)
             throw new Error("The parameter 'uuid' cannot be null.");
@@ -609,11 +609,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processGroupsGetPage(_response);
+            return this.processGetGroups(_response);
         });
     }
 
-    protected processGroupsGetPage(response: Response): Promise<Group[]> {
+    protected processGetGroups(response: Response): Promise<Group[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -633,7 +633,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    groupsGetById(id: string): Promise<Group> {
+    getGroupById(id: string): Promise<Group> {
         let url_ = this.baseUrl + "/v1/groups/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -650,11 +650,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processGroupsGetById(_response);
+            return this.processGetGroupById(_response);
         });
     }
 
-    protected processGroupsGetById(response: Response): Promise<Group> {
+    protected processGetGroupById(response: Response): Promise<Group> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -674,7 +674,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    groupsGetMembers(id: string): Promise<GroupMember[]> {
+    getGroupMembers(id: string): Promise<GroupMember[]> {
         let url_ = this.baseUrl + "/v1/groups/{id}/members";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -691,11 +691,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processGroupsGetMembers(_response);
+            return this.processGetGroupMembers(_response);
         });
     }
 
-    protected processGroupsGetMembers(response: Response): Promise<GroupMember[]> {
+    protected processGetGroupMembers(response: Response): Promise<GroupMember[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -715,7 +715,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    groupsGetGames(id: string): Promise<GroupGame[]> {
+    getGroupGames(id: string): Promise<GroupGame[]> {
         let url_ = this.baseUrl + "/v1/groups/{id}/games";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -732,11 +732,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processGroupsGetGames(_response);
+            return this.processGetGroupGames(_response);
         });
     }
 
-    protected processGroupsGetGames(response: Response): Promise<GroupGame[]> {
+    protected processGetGroupGames(response: Response): Promise<GroupGame[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -754,10 +754,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param order (optional)
+     * @param order (optional) 
      * @return OK
      */
-    leaderboardGetTop20(order: LeaderboardOrder | undefined): Promise<LeaderboardItem[]> {
+    getLeaderboard(order: LeaderboardOrder | undefined): Promise<LeaderboardItem[]> {
         let url_ = this.baseUrl + "/v1/leaderboard?";
         if (order === null)
             throw new Error("The parameter 'order' cannot be null.");
@@ -775,11 +775,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processLeaderboardGetTop20(_response);
+            return this.processGetLeaderboard(_response);
         });
     }
 
-    protected processLeaderboardGetTop20(response: Response): Promise<LeaderboardItem[]> {
+    protected processGetLeaderboard(response: Response): Promise<LeaderboardItem[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -797,10 +797,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return OK
      */
-    searchSearch(body: SearchRequest | undefined): Promise<any[]> {
+    search(body: SearchRequest | undefined): Promise<any[]> {
         let url_ = this.baseUrl + "/v1/search";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -818,11 +818,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processSearchSearch(_response);
+            return this.processSearch(_response);
         });
     }
 
-    protected processSearchSearch(response: Response): Promise<any[]> {
+    protected processSearch(response: Response): Promise<any[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -840,14 +840,14 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param address (optional)
-     * @param query_port (optional)
-     * @param country (optional)
-     * @param page (optional)
-     * @param limit (optional)
+     * @param address (optional) 
+     * @param query_port (optional) 
+     * @param country (optional) 
+     * @param page (optional) 
+     * @param limit (optional) 
      * @return OK
      */
-    serversGetPage(address: string | undefined, query_port: number | undefined, country: string | undefined, page: number | undefined, limit: number | undefined): Promise<GameServer[]> {
+    getServers(address: string | undefined, query_port: number | undefined, country: string | undefined, page: number | undefined, limit: number | undefined): Promise<GameServer[]> {
         let url_ = this.baseUrl + "/v1/servers?";
         if (address === null)
             throw new Error("The parameter 'address' cannot be null.");
@@ -881,11 +881,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processServersGetPage(_response);
+            return this.processGetServers(_response);
         });
     }
 
-    protected processServersGetPage(response: Response): Promise<GameServer[]> {
+    protected processGetServers(response: Response): Promise<GameServer[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -905,7 +905,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    serversGetById(id: string): Promise<GameServer> {
+    getServerById(id: string): Promise<GameServer> {
         let url_ = this.baseUrl + "/v1/servers/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -922,11 +922,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processServersGetById(_response);
+            return this.processGetServerById(_response);
         });
     }
 
-    protected processServersGetById(response: Response): Promise<GameServer> {
+    protected processGetServerById(response: Response): Promise<GameServer> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -946,7 +946,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    serversGetMetrics(): Promise<ServerMetrics> {
+    getServersMetrics(): Promise<ServerMetrics> {
         let url_ = this.baseUrl + "/v1/servers/metrics";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -960,11 +960,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processServersGetMetrics(_response);
+            return this.processGetServersMetrics(_response);
         });
     }
 
-    protected processServersGetMetrics(response: Response): Promise<ServerMetrics> {
+    protected processGetServersMetrics(response: Response): Promise<ServerMetrics> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -984,7 +984,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    serversGetCountries(): Promise<{ [key: string]: number; }> {
+    getServersCountries(): Promise<{ [key: string]: number; }> {
         let url_ = this.baseUrl + "/v1/servers/countries";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -998,11 +998,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processServersGetCountries(_response);
+            return this.processGetServersCountries(_response);
         });
     }
 
-    protected processServersGetCountries(response: Response): Promise<{ [key: string]: number; }> {
+    protected processGetServersCountries(response: Response): Promise<{ [key: string]: number; }> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1020,10 +1020,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param page (optional)
+     * @param page (optional) 
      * @return OK
      */
-    subscriptionsGetPage(page: number | undefined): Promise<Subscription[]> {
+    getSubscriptions(page: number | undefined): Promise<Subscription[]> {
         let url_ = this.baseUrl + "/v1/subscriptions?";
         if (page === null)
             throw new Error("The parameter 'page' cannot be null.");
@@ -1041,11 +1041,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processSubscriptionsGetPage(_response);
+            return this.processGetSubscriptions(_response);
         });
     }
 
-    protected processSubscriptionsGetPage(response: Response): Promise<Subscription[]> {
+    protected processGetSubscriptions(response: Response): Promise<Subscription[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1065,7 +1065,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    subscriptionsGetById(id: string): Promise<Subscription> {
+    getSubscriptionById(id: string): Promise<Subscription> {
         let url_ = this.baseUrl + "/v1/subscriptions/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1082,11 +1082,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processSubscriptionsGetById(_response);
+            return this.processGetSubscriptionById(_response);
         });
     }
 
-    protected processSubscriptionsGetById(response: Response): Promise<Subscription> {
+    protected processGetSubscriptionById(response: Response): Promise<Subscription> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1104,14 +1104,14 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param uuid (optional)
-     * @param name (optional)
-     * @param email (optional)
-     * @param page (optional)
-     * @param limit (optional)
+     * @param uuid (optional) 
+     * @param name (optional) 
+     * @param email (optional) 
+     * @param page (optional) 
+     * @param limit (optional) 
      * @return OK
      */
-    usersGetPage(uuid: string | undefined, name: string | undefined, email: string | undefined, page: number | undefined, limit: number | undefined): Promise<Profile[]> {
+    getUsers(uuid: string | undefined, name: string | undefined, email: string | undefined, page: number | undefined, limit: number | undefined): Promise<Profile[]> {
         let url_ = this.baseUrl + "/v1/users?";
         if (uuid === null)
             throw new Error("The parameter 'uuid' cannot be null.");
@@ -1145,11 +1145,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUsersGetPage(_response);
+            return this.processGetUsers(_response);
         });
     }
 
-    protected processUsersGetPage(response: Response): Promise<Profile[]> {
+    protected processGetUsers(response: Response): Promise<Profile[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1169,7 +1169,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    usersGetById(id: string): Promise<Profile> {
+    getUserById(id: string): Promise<Profile> {
         let url_ = this.baseUrl + "/v1/users/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1186,11 +1186,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUsersGetById(_response);
+            return this.processGetUserById(_response);
         });
     }
 
-    protected processUsersGetById(response: Response): Promise<Profile> {
+    protected processGetUserById(response: Response): Promise<Profile> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1210,7 +1210,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    usersGetGroups(id: string): Promise<ProfileGroup[]> {
+    getUserGroups(id: string): Promise<ProfileGroup[]> {
         let url_ = this.baseUrl + "/v1/users/{id}/groups";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1227,11 +1227,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUsersGetGroups(_response);
+            return this.processGetUserGroups(_response);
         });
     }
 
-    protected processUsersGetGroups(response: Response): Promise<ProfileGroup[]> {
+    protected processGetUserGroups(response: Response): Promise<ProfileGroup[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1251,7 +1251,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    usersGetGames(id: string): Promise<ProfileGame[]> {
+    getUserGames(id: string): Promise<ProfileGame[]> {
         let url_ = this.baseUrl + "/v1/users/{id}/games";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1268,11 +1268,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUsersGetGames(_response);
+            return this.processGetUserGames(_response);
         });
     }
 
-    protected processUsersGetGames(response: Response): Promise<ProfileGame[]> {
+    protected processGetUserGames(response: Response): Promise<ProfileGame[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1292,7 +1292,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    usersGetFriends(id: string): Promise<any[]> {
+    getUserFriends(id: string): Promise<any[]> {
         let url_ = this.baseUrl + "/v1/users/{id}/friends";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1309,11 +1309,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUsersGetFriends(_response);
+            return this.processGetUserFriends(_response);
         });
     }
 
-    protected processUsersGetFriends(response: Response): Promise<any[]> {
+    protected processGetUserFriends(response: Response): Promise<any[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1331,11 +1331,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param page (optional)
-     * @param limit (optional)
+     * @param page (optional) 
+     * @param limit (optional) 
      * @return OK
      */
-    usersGetServers(id: string, page: number | undefined, limit: number | undefined): Promise<GameServer[]> {
+    getUserServers(id: string, page: number | undefined, limit: number | undefined): Promise<GameServer[]> {
         let url_ = this.baseUrl + "/v1/users/{id}/servers?";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1360,11 +1360,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUsersGetServers(_response);
+            return this.processGetUserServers(_response);
         });
     }
 
-    protected processUsersGetServers(response: Response): Promise<GameServer[]> {
+    protected processGetUserServers(response: Response): Promise<GameServer[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1384,7 +1384,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    usersGetAccounts(id: string): Promise<Account[]> {
+    getUserAccounts(id: string): Promise<Account[]> {
         let url_ = this.baseUrl + "/v1/users/{id}/accounts";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1401,11 +1401,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUsersGetAccounts(_response);
+            return this.processGetUserAccounts(_response);
         });
     }
 
-    protected processUsersGetAccounts(response: Response): Promise<Account[]> {
+    protected processGetUserAccounts(response: Response): Promise<Account[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1425,7 +1425,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     /**
      * @return OK
      */
-    usersGetPunishments(id: string): Promise<any[]> {
+    getUserPunishments(id: string): Promise<any[]> {
         let url_ = this.baseUrl + "/v1/users/{id}/punishments";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1442,11 +1442,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUsersGetPunishments(_response);
+            return this.processGetUserPunishments(_response);
         });
     }
 
-    protected processUsersGetPunishments(response: Response): Promise<any[]> {
+    protected processGetUserPunishments(response: Response): Promise<any[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1464,10 +1464,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return OK
      */
-    usersUpdateProfile(id: string, body: UpdateProfile | undefined): Promise<Profile> {
+    updateUserProfile(id: string, body: UpdateProfile | undefined): Promise<Profile> {
         let url_ = this.baseUrl + "/v1/users/{id}/profile";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1488,11 +1488,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUsersUpdateProfile(_response);
+            return this.processUpdateUserProfile(_response);
         });
     }
 
-    protected processUsersUpdateProfile(response: Response): Promise<Profile> {
+    protected processUpdateUserProfile(response: Response): Promise<Profile> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1510,11 +1510,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param length (optional)
-     * @param symbols (optional)
+     * @param length (optional) 
+     * @param symbols (optional) 
      * @return OK
      */
-    utilsPassword(length: number | undefined, symbols: boolean | undefined): Promise<HashViewModel> {
+    generatePassword(length: number | undefined, symbols: boolean | undefined): Promise<HashViewModel> {
         let url_ = this.baseUrl + "/v1/utils/password?";
         if (length === null)
             throw new Error("The parameter 'length' cannot be null.");
@@ -1536,11 +1536,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUtilsPassword(_response);
+            return this.processGeneratePassword(_response);
         });
     }
 
-    protected processUtilsPassword(response: Response): Promise<HashViewModel> {
+    protected processGeneratePassword(response: Response): Promise<HashViewModel> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1558,10 +1558,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param amount (optional)
+     * @param amount (optional) 
      * @return OK
      */
-    utilsNewFlake(amount: number | undefined): Promise<string[]> {
+    generateFlakeId(amount: number | undefined): Promise<string[]> {
         let url_ = this.baseUrl + "/v1/utils/flake?";
         if (amount === null)
             throw new Error("The parameter 'amount' cannot be null.");
@@ -1579,11 +1579,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUtilsNewFlake(_response);
+            return this.processGenerateFlakeId(_response);
         });
     }
 
-    protected processUtilsNewFlake(response: Response): Promise<string[]> {
+    protected processGenerateFlakeId(response: Response): Promise<string[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1601,11 +1601,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param version (optional)
-     * @param amount (optional)
+     * @param version (optional) 
+     * @param amount (optional) 
      * @return OK
      */
-    utilsNewUuid(version: number | undefined, amount: number | undefined): Promise<string[]> {
+    generateUuid(version: number | undefined, amount: number | undefined): Promise<string[]> {
         let url_ = this.baseUrl + "/v1/utils/uuid?";
         if (version === null)
             throw new Error("The parameter 'version' cannot be null.");
@@ -1627,11 +1627,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUtilsNewUuid(_response);
+            return this.processGenerateUuid(_response);
         });
     }
 
-    protected processUtilsNewUuid(response: Response): Promise<string[]> {
+    protected processGenerateUuid(response: Response): Promise<string[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1649,10 +1649,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return OK
      */
-    utilsBase64(body: CryptoViewModel | undefined): Promise<CryptoViewModel> {
+    convertBase64(body: CryptoViewModel | undefined): Promise<CryptoViewModel> {
         let url_ = this.baseUrl + "/v1/utils/base64";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1670,11 +1670,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUtilsBase64(_response);
+            return this.processConvertBase64(_response);
         });
     }
 
-    protected processUtilsBase64(response: Response): Promise<CryptoViewModel> {
+    protected processConvertBase64(response: Response): Promise<CryptoViewModel> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1692,10 +1692,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return OK
      */
-    utilsMd5Hash(body: HashViewModel | undefined): Promise<HashViewModel> {
+    convertMd5(body: HashViewModel | undefined): Promise<HashViewModel> {
         let url_ = this.baseUrl + "/v1/utils/md5";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1713,11 +1713,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUtilsMd5Hash(_response);
+            return this.processConvertMd5(_response);
         });
     }
 
-    protected processUtilsMd5Hash(response: Response): Promise<HashViewModel> {
+    protected processConvertMd5(response: Response): Promise<HashViewModel> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1735,10 +1735,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return OK
      */
-    utilsSha256Hash(body: HashViewModel | undefined): Promise<HashViewModel> {
+    convertSha256(body: HashViewModel | undefined): Promise<HashViewModel> {
         let url_ = this.baseUrl + "/v1/utils/sha256";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1756,11 +1756,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUtilsSha256Hash(_response);
+            return this.processConvertSha256(_response);
         });
     }
 
-    protected processUtilsSha256Hash(response: Response): Promise<HashViewModel> {
+    protected processConvertSha256(response: Response): Promise<HashViewModel> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1778,10 +1778,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return OK
      */
-    utilsBcryptHash(body: HashViewModel | undefined): Promise<HashViewModel> {
+    generateBcrypt(body: HashViewModel | undefined): Promise<HashViewModel> {
         let url_ = this.baseUrl + "/v1/utils/bcrypt";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1799,11 +1799,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUtilsBcryptHash(_response);
+            return this.processGenerateBcrypt(_response);
         });
     }
 
-    protected processUtilsBcryptHash(response: Response): Promise<HashViewModel> {
+    protected processGenerateBcrypt(response: Response): Promise<HashViewModel> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1821,10 +1821,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return OK
      */
-    utilsArgon2Hash(body: HashViewModel | undefined): Promise<HashViewModel> {
+    generateArgon2(body: HashViewModel | undefined): Promise<HashViewModel> {
         let url_ = this.baseUrl + "/v1/utils/argon2";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1842,11 +1842,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processUtilsArgon2Hash(_response);
+            return this.processGenerateArgon2(_response);
         });
     }
 
-    protected processUtilsArgon2Hash(response: Response): Promise<HashViewModel> {
+    protected processGenerateArgon2(response: Response): Promise<HashViewModel> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {

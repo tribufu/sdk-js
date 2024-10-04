@@ -7,8 +7,8 @@ import { TribufuApi } from "../build/index.mjs";
 dotenv.config();
 
 async function main() {
-    const api = TribufuApi.fromEnv("TRIBUFU");
-    console.log(await api.authGetUserInfo());
+    const api = TribufuApi.fromEnv();
+    console.log(await api.getUserInfo());
 }
 
 main();
