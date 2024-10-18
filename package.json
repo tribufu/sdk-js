@@ -12,6 +12,13 @@
         "require": "./build/index.cjs",
         "types": "./build/index.d.ts"
     },
+    "typesVersions": {
+        "*": {
+            "*": [
+                "./build/*"
+            ]
+        }
+    },
     "scripts": {
         "clean": "rimraf build",
         "build": "npm run clean && tsc && node scripts/esbuild.js"
