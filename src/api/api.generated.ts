@@ -22,6 +22,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get current user information.
      * @return OK
      */
     getUserInfo(): Promise<UserInfo> {
@@ -60,6 +61,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Login with name or email and password.
      * @param body (optional) 
      * @return OK
      */
@@ -103,6 +105,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Create a new user.
      * @param body (optional) 
      * @return OK
      */
@@ -146,6 +149,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Refresh credentials.
      * @param body (optional) 
      * @return OK
      */
@@ -189,6 +193,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Invalidate credentials.
      * @return OK
      */
     logout(): Promise<void> {
@@ -224,15 +229,21 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a list of game server clusters.
      * @param page (optional) 
+     * @param limit (optional) 
      * @return OK
      */
-    getClusters(page?: number | undefined): Promise<GameServerCluster[]> {
+    getClusters(page?: number | undefined, limit?: number | undefined): Promise<GameServerCluster[]> {
         let url_ = this.baseUrl + "/v1/clusters?";
         if (page === null)
             throw new Error("The parameter 'page' cannot be null.");
         else if (page !== undefined)
             url_ += "page=" + encodeURIComponent("" + page) + "&";
+        if (limit === null)
+            throw new Error("The parameter 'limit' cannot be null.");
+        else if (limit !== undefined)
+            url_ += "limit=" + encodeURIComponent("" + limit) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
@@ -267,6 +278,48 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Create a new game server cluster.
+     * @param body (optional) 
+     * @return OK
+     */
+    createCluster(body?: any | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/v1/clusters";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: RequestInit = {
+            body: content_,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json-patch+json",
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processCreateCluster(_response);
+        });
+    }
+
+    protected processCreateCluster(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * Get a game server cluster by id.
      * @return OK
      */
     getClusterGetById(id: string): Promise<GameServerCluster> {
@@ -308,15 +361,104 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param page (optional) 
+     * Update a game server cluster.
+     * @param body (optional) 
      * @return OK
      */
-    getFiles(page?: number | undefined): Promise<File[]> {
+    updateCluster(id: string, body?: any | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/v1/clusters/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: RequestInit = {
+            body: content_,
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json-patch+json",
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processUpdateCluster(_response);
+        });
+    }
+
+    protected processUpdateCluster(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * Delete a game server cluster.
+     * @return OK
+     */
+    deleteCluster(id: string): Promise<void> {
+        let url_ = this.baseUrl + "/v1/clusters/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "DELETE",
+            headers: {
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processDeleteCluster(_response);
+        });
+    }
+
+    protected processDeleteCluster(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * Get a list of files.
+     * @param page (optional) 
+     * @param limit (optional) 
+     * @return OK
+     */
+    getFiles(page?: number | undefined, limit?: number | undefined): Promise<File[]> {
         let url_ = this.baseUrl + "/v1/files?";
         if (page === null)
             throw new Error("The parameter 'page' cannot be null.");
         else if (page !== undefined)
             url_ += "page=" + encodeURIComponent("" + page) + "&";
+        if (limit === null)
+            throw new Error("The parameter 'limit' cannot be null.");
+        else if (limit !== undefined)
+            url_ += "limit=" + encodeURIComponent("" + limit) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
@@ -351,6 +493,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a file by id.
      * @return OK
      */
     getFileById(id: string): Promise<File> {
@@ -392,6 +535,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a list of games.
      * @return OK
      */
     getGames(): Promise<Game[]> {
@@ -430,6 +574,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a game by id.
      * @return OK
      */
     getGameById(id: string): Promise<Game> {
@@ -471,10 +616,12 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a list of game servers of a game.
      * @param page (optional) 
+     * @param limit (optional) 
      * @return OK
      */
-    getGameServers(id: string, page?: number | undefined): Promise<GameServer[]> {
+    getGameServers(id: string, page?: number | undefined, limit?: number | undefined): Promise<GameServer[]> {
         let url_ = this.baseUrl + "/v1/games/{id}/servers?";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -483,6 +630,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
             throw new Error("The parameter 'page' cannot be null.");
         else if (page !== undefined)
             url_ += "page=" + encodeURIComponent("" + page) + "&";
+        if (limit === null)
+            throw new Error("The parameter 'limit' cannot be null.");
+        else if (limit !== undefined)
+            url_ += "limit=" + encodeURIComponent("" + limit) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
@@ -517,10 +668,12 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a list of game server clusters of a game.
      * @param page (optional) 
+     * @param limit (optional) 
      * @return OK
      */
-    getGameClusters(id: string, page?: number | undefined): Promise<GameServerCluster[]> {
+    getGameClusters(id: string, page?: number | undefined, limit?: number | undefined): Promise<GameServerCluster[]> {
         let url_ = this.baseUrl + "/v1/games/{id}/clusters?";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -529,6 +682,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
             throw new Error("The parameter 'page' cannot be null.");
         else if (page !== undefined)
             url_ += "page=" + encodeURIComponent("" + page) + "&";
+        if (limit === null)
+            throw new Error("The parameter 'limit' cannot be null.");
+        else if (limit !== undefined)
+            url_ += "limit=" + encodeURIComponent("" + limit) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
@@ -563,32 +720,13 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param uuid (optional) 
-     * @param tag (optional) 
-     * @param name (optional) 
-     * @param email (optional) 
+     * Get a list of groups.
      * @param page (optional) 
      * @param limit (optional) 
      * @return OK
      */
-    getGroups(uuid?: string | undefined, tag?: string | undefined, name?: string | undefined, email?: string | undefined, page?: number | undefined, limit?: number | undefined): Promise<Group[]> {
+    getGroups(page?: number | undefined, limit?: number | undefined): Promise<Group[]> {
         let url_ = this.baseUrl + "/v1/groups?";
-        if (uuid === null)
-            throw new Error("The parameter 'uuid' cannot be null.");
-        else if (uuid !== undefined)
-            url_ += "uuid=" + encodeURIComponent("" + uuid) + "&";
-        if (tag === null)
-            throw new Error("The parameter 'tag' cannot be null.");
-        else if (tag !== undefined)
-            url_ += "tag=" + encodeURIComponent("" + tag) + "&";
-        if (name === null)
-            throw new Error("The parameter 'name' cannot be null.");
-        else if (name !== undefined)
-            url_ += "name=" + encodeURIComponent("" + name) + "&";
-        if (email === null)
-            throw new Error("The parameter 'email' cannot be null.");
-        else if (email !== undefined)
-            url_ += "email=" + encodeURIComponent("" + email) + "&";
         if (page === null)
             throw new Error("The parameter 'page' cannot be null.");
         else if (page !== undefined)
@@ -631,6 +769,48 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Create a new group.
+     * @param body (optional) 
+     * @return OK
+     */
+    createGroup(body?: any | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/v1/groups";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: RequestInit = {
+            body: content_,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json-patch+json",
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processCreateGroup(_response);
+        });
+    }
+
+    protected processCreateGroup(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * Get a group by id.
      * @return OK
      */
     getGroupById(id: string): Promise<Group> {
@@ -672,6 +852,174 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Update a group.
+     * @param body (optional) 
+     * @return OK
+     */
+    updateGroup(id: string, body?: any | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/v1/groups/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: RequestInit = {
+            body: content_,
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json-patch+json",
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processUpdateGroup(_response);
+        });
+    }
+
+    protected processUpdateGroup(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * Delete a group.
+     * @return OK
+     */
+    deleteGroup(id: string): Promise<void> {
+        let url_ = this.baseUrl + "/v1/groups/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "DELETE",
+            headers: {
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processDeleteGroup(_response);
+        });
+    }
+
+    protected processDeleteGroup(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * Get a group by uuid.
+     * @return OK
+     */
+    getGroupByUuid(uuid: string): Promise<Group> {
+        let url_ = this.baseUrl + "/v1/groups/uuid/{uuid}";
+        if (uuid === undefined || uuid === null)
+            throw new Error("The parameter 'uuid' must be defined.");
+        url_ = url_.replace("{uuid}", encodeURIComponent("" + uuid));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+                "Accept": "text/plain"
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processGetGroupByUuid(_response);
+        });
+    }
+
+    protected processGetGroupByUuid(response: Response): Promise<Group> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Group;
+            return result200;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<Group>(null as any);
+    }
+
+    /**
+     * Get a group by tag.
+     * @return OK
+     */
+    getGroupByTag(tag: string): Promise<Group> {
+        let url_ = this.baseUrl + "/v1/groups/tag/{tag}";
+        if (tag === undefined || tag === null)
+            throw new Error("The parameter 'tag' must be defined.");
+        url_ = url_.replace("{tag}", encodeURIComponent("" + tag));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+                "Accept": "text/plain"
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processGetGroupByTag(_response);
+        });
+    }
+
+    protected processGetGroupByTag(response: Response): Promise<Group> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Group;
+            return result200;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<Group>(null as any);
+    }
+
+    /**
+     * Get a list of members in a group.
      * @return OK
      */
     getGroupMembers(id: string): Promise<GroupMember[]> {
@@ -713,6 +1061,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a list of games of a group.
      * @return OK
      */
     getGroupGames(id: string): Promise<GroupGame[]> {
@@ -754,6 +1103,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get the top 20 leaderboard users.
      * @param order (optional) 
      * @return OK
      */
@@ -797,6 +1147,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Advanced search for servers or players.
      * @param body (optional) 
      * @return OK
      */
@@ -840,27 +1191,13 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param address (optional) 
-     * @param query_port (optional) 
-     * @param country (optional) 
+     * Get a list of game servers.
      * @param page (optional) 
      * @param limit (optional) 
      * @return OK
      */
-    getServers(address?: string | undefined, query_port?: number | undefined, country?: string | undefined, page?: number | undefined, limit?: number | undefined): Promise<GameServer[]> {
+    getServers(page?: number | undefined, limit?: number | undefined): Promise<GameServer[]> {
         let url_ = this.baseUrl + "/v1/servers?";
-        if (address === null)
-            throw new Error("The parameter 'address' cannot be null.");
-        else if (address !== undefined)
-            url_ += "address=" + encodeURIComponent("" + address) + "&";
-        if (query_port === null)
-            throw new Error("The parameter 'query_port' cannot be null.");
-        else if (query_port !== undefined)
-            url_ += "query_port=" + encodeURIComponent("" + query_port) + "&";
-        if (country === null)
-            throw new Error("The parameter 'country' cannot be null.");
-        else if (country !== undefined)
-            url_ += "country=" + encodeURIComponent("" + country) + "&";
         if (page === null)
             throw new Error("The parameter 'page' cannot be null.");
         else if (page !== undefined)
@@ -903,6 +1240,48 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Create a new game server.
+     * @param body (optional) 
+     * @return OK
+     */
+    createServer(body?: any | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/v1/servers";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: RequestInit = {
+            body: content_,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json-patch+json",
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processCreateServer(_response);
+        });
+    }
+
+    protected processCreateServer(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * Get a game server by id.
      * @return OK
      */
     getServerById(id: string): Promise<GameServer> {
@@ -944,6 +1323,231 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Update a game server.
+     * @param body (optional) 
+     * @return OK
+     */
+    updateServer(id: string, body?: any | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/v1/servers/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: RequestInit = {
+            body: content_,
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json-patch+json",
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processUpdateServer(_response);
+        });
+    }
+
+    protected processUpdateServer(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * Delete a game server.
+     * @return OK
+     */
+    deleteServer(id: string): Promise<void> {
+        let url_ = this.baseUrl + "/v1/servers/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "DELETE",
+            headers: {
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processDeleteServer(_response);
+        });
+    }
+
+    protected processDeleteServer(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * Get a game server by address and query port.
+     * @return OK
+     */
+    getServerByAddressAndQueryPort(address: string, port: number): Promise<GameServer> {
+        let url_ = this.baseUrl + "/v1/servers/address/{address}:{port}";
+        if (address === undefined || address === null)
+            throw new Error("The parameter 'address' must be defined.");
+        url_ = url_.replace("{address}", encodeURIComponent("" + address));
+        if (port === undefined || port === null)
+            throw new Error("The parameter 'port' must be defined.");
+        url_ = url_.replace("{port}", encodeURIComponent("" + port));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+                "Accept": "text/plain"
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processGetServerByAddressAndQueryPort(_response);
+        });
+    }
+
+    protected processGetServerByAddressAndQueryPort(response: Response): Promise<GameServer> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as GameServer;
+            return result200;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<GameServer>(null as any);
+    }
+
+    /**
+     * Get a list of game servers from a country.
+     * @param page (optional) 
+     * @param limit (optional) 
+     * @return OK
+     */
+    getServersByCountry(country: string, page?: number | undefined, limit?: number | undefined): Promise<GameServer[]> {
+        let url_ = this.baseUrl + "/v1/servers/country/{country}?";
+        if (country === undefined || country === null)
+            throw new Error("The parameter 'country' must be defined.");
+        url_ = url_.replace("{country}", encodeURIComponent("" + country));
+        if (page === null)
+            throw new Error("The parameter 'page' cannot be null.");
+        else if (page !== undefined)
+            url_ += "page=" + encodeURIComponent("" + page) + "&";
+        if (limit === null)
+            throw new Error("The parameter 'limit' cannot be null.");
+        else if (limit !== undefined)
+            url_ += "limit=" + encodeURIComponent("" + limit) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+                "Accept": "text/plain"
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processGetServersByCountry(_response);
+        });
+    }
+
+    protected processGetServersByCountry(response: Response): Promise<GameServer[]> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as GameServer[];
+            return result200;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<GameServer[]>(null as any);
+    }
+
+    /**
+     * Claim a game server.
+     * @param body (optional) 
+     * @return OK
+     */
+    claimServer(id: string, body?: any | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/v1/servers/{id}/claim";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: RequestInit = {
+            body: content_,
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json-patch+json",
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processClaimServer(_response);
+        });
+    }
+
+    protected processClaimServer(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * Get metrics about the tracked game servers.
      * @return OK
      */
     getServersMetrics(): Promise<ServerMetrics> {
@@ -982,6 +1586,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a list of countries with the number of game servers.
      * @return OK
      */
     getServersCountries(): Promise<{ [key: string]: number; }> {
@@ -1020,15 +1625,21 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a list of subscriptions.
      * @param page (optional) 
+     * @param limit (optional) 
      * @return OK
      */
-    getSubscriptions(page?: number | undefined): Promise<Subscription[]> {
+    getSubscriptions(page?: number | undefined, limit?: number | undefined): Promise<Subscription[]> {
         let url_ = this.baseUrl + "/v1/subscriptions?";
         if (page === null)
             throw new Error("The parameter 'page' cannot be null.");
         else if (page !== undefined)
             url_ += "page=" + encodeURIComponent("" + page) + "&";
+        if (limit === null)
+            throw new Error("The parameter 'limit' cannot be null.");
+        else if (limit !== undefined)
+            url_ += "limit=" + encodeURIComponent("" + limit) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
@@ -1063,6 +1674,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a subscription by id.
      * @return OK
      */
     getSubscriptionById(id: string): Promise<Subscription> {
@@ -1104,27 +1716,13 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * @param uuid (optional) 
-     * @param name (optional) 
-     * @param email (optional) 
+     * Get a list of user profiles.
      * @param page (optional) 
      * @param limit (optional) 
      * @return OK
      */
-    getUsers(uuid?: string | undefined, name?: string | undefined, email?: string | undefined, page?: number | undefined, limit?: number | undefined): Promise<Profile[]> {
+    getUsers(page?: number | undefined, limit?: number | undefined): Promise<Profile[]> {
         let url_ = this.baseUrl + "/v1/users?";
-        if (uuid === null)
-            throw new Error("The parameter 'uuid' cannot be null.");
-        else if (uuid !== undefined)
-            url_ += "uuid=" + encodeURIComponent("" + uuid) + "&";
-        if (name === null)
-            throw new Error("The parameter 'name' cannot be null.");
-        else if (name !== undefined)
-            url_ += "name=" + encodeURIComponent("" + name) + "&";
-        if (email === null)
-            throw new Error("The parameter 'email' cannot be null.");
-        else if (email !== undefined)
-            url_ += "email=" + encodeURIComponent("" + email) + "&";
         if (page === null)
             throw new Error("The parameter 'page' cannot be null.");
         else if (page !== undefined)
@@ -1167,6 +1765,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a user profile by id.
      * @return OK
      */
     getUserById(id: string): Promise<Profile> {
@@ -1208,6 +1807,91 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a user profile by uuid.
+     * @return OK
+     */
+    getUserByUuid(uuid: string): Promise<Profile> {
+        let url_ = this.baseUrl + "/v1/users/uuid/{uuid}";
+        if (uuid === undefined || uuid === null)
+            throw new Error("The parameter 'uuid' must be defined.");
+        url_ = url_.replace("{uuid}", encodeURIComponent("" + uuid));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+                "Accept": "text/plain"
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processGetUserByUuid(_response);
+        });
+    }
+
+    protected processGetUserByUuid(response: Response): Promise<Profile> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Profile;
+            return result200;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<Profile>(null as any);
+    }
+
+    /**
+     * Get a user profile by name.
+     * @return OK
+     */
+    getUserByName(name: string): Promise<Profile> {
+        let url_ = this.baseUrl + "/v1/users/name/{name}";
+        if (name === undefined || name === null)
+            throw new Error("The parameter 'name' must be defined.");
+        url_ = url_.replace("{name}", encodeURIComponent("" + name));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+                "Accept": "text/plain"
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processGetUserByName(_response);
+        });
+    }
+
+    protected processGetUserByName(response: Response): Promise<Profile> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Profile;
+            return result200;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<Profile>(null as any);
+    }
+
+    /**
+     * Get a list of groups the user is a member of.
      * @return OK
      */
     getUserGroups(id: string): Promise<ProfileGroup[]> {
@@ -1249,6 +1933,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a list of games the user has played.
      * @return OK
      */
     getUserGames(id: string): Promise<ProfileGame[]> {
@@ -1290,6 +1975,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a list of friends of the user.
      * @return OK
      */
     getUserFriends(id: string): Promise<any[]> {
@@ -1331,6 +2017,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a list of servers the user is owner of.
      * @param page (optional) 
      * @param limit (optional) 
      * @return OK
@@ -1382,6 +2069,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a list of connected accounts of the user.
      * @return OK
      */
     getUserAccounts(id: string): Promise<Account[]> {
@@ -1423,6 +2111,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Get a list of punishments the user has received.
      * @return OK
      */
     getUserPunishments(id: string): Promise<any[]> {
@@ -1464,6 +2153,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Update a user profile.
      * @param body (optional) 
      * @return OK
      */
@@ -1510,6 +2200,95 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Change the email of a user.
+     * @param body (optional) 
+     * @return OK
+     */
+    changeEmail(id: string, body?: any | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/v1/users/{id}/email";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: RequestInit = {
+            body: content_,
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json-patch+json",
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processChangeEmail(_response);
+        });
+    }
+
+    protected processChangeEmail(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * Change the password of a user.
+     * @param body (optional) 
+     * @return OK
+     */
+    changePassword(id: string, body?: any | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/v1/users/{id}/password";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: RequestInit = {
+            body: content_,
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json-patch+json",
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processChangePassword(_response);
+        });
+    }
+
+    protected processChangePassword(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    /**
+     * Generate a random password.
      * @param length (optional) 
      * @param symbols (optional) 
      * @return OK
@@ -1558,6 +2337,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Generate one or more flake ids.
      * @param amount (optional) 
      * @return OK
      */
@@ -1601,6 +2381,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Generate one or more uuids with a specific version.
      * @param version (optional) 
      * @param amount (optional) 
      * @return OK
@@ -1649,6 +2430,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Convert a string to base64 or vice versa.
      * @param body (optional) 
      * @return OK
      */
@@ -1692,10 +2474,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Hash a string using md5.
      * @param body (optional) 
      * @return OK
      */
-    convertMd5(body?: HashViewModel | undefined): Promise<HashViewModel> {
+    hashMd5(body?: HashViewModel | undefined): Promise<HashViewModel> {
         let url_ = this.baseUrl + "/v1/utils/md5";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1713,11 +2496,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processConvertMd5(_response);
+            return this.processHashMd5(_response);
         });
     }
 
-    protected processConvertMd5(response: Response): Promise<HashViewModel> {
+    protected processHashMd5(response: Response): Promise<HashViewModel> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1735,10 +2518,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Hash a string using sha256.
      * @param body (optional) 
      * @return OK
      */
-    convertSha256(body?: HashViewModel | undefined): Promise<HashViewModel> {
+    hashSha256(body?: HashViewModel | undefined): Promise<HashViewModel> {
         let url_ = this.baseUrl + "/v1/utils/sha256";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1756,11 +2540,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processConvertSha256(_response);
+            return this.processHashSha256(_response);
         });
     }
 
-    protected processConvertSha256(response: Response): Promise<HashViewModel> {
+    protected processHashSha256(response: Response): Promise<HashViewModel> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1778,10 +2562,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Hash a string using bcrypt.
      * @param body (optional) 
      * @return OK
      */
-    generateBcrypt(body?: HashViewModel | undefined): Promise<HashViewModel> {
+    hashBcrypt(body?: HashViewModel | undefined): Promise<HashViewModel> {
         let url_ = this.baseUrl + "/v1/utils/bcrypt";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1799,11 +2584,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processGenerateBcrypt(_response);
+            return this.processHashBcrypt(_response);
         });
     }
 
-    protected processGenerateBcrypt(response: Response): Promise<HashViewModel> {
+    protected processHashBcrypt(response: Response): Promise<HashViewModel> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -1821,10 +2606,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
+     * Hash a string using argon2.
      * @param body (optional) 
      * @return OK
      */
-    generateArgon2(body?: HashViewModel | undefined): Promise<HashViewModel> {
+    hashArgon2(body?: HashViewModel | undefined): Promise<HashViewModel> {
         let url_ = this.baseUrl + "/v1/utils/argon2";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1842,11 +2628,11 @@ export class TribufuApiGenerated extends TribufuApiBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.processGenerateArgon2(_response);
+            return this.processHashArgon2(_response);
         });
     }
 
-    protected processGenerateArgon2(response: Response): Promise<HashViewModel> {
+    protected processHashArgon2(response: Response): Promise<HashViewModel> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {

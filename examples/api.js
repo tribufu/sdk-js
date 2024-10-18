@@ -7,8 +7,10 @@ import { TribufuApi } from "../build/index.mjs";
 dotenv.config();
 
 async function main() {
-    const api = TribufuApi.fromEnv();
-    console.log(await api.getUserInfo());
+    const tribufu = TribufuApi.fromEnv();
+    console.log(
+        await tribufu.getServerByAddressAndQueryPort("mine.tribufu.com", 25565),
+    );
 }
 
 main();

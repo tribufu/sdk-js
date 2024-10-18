@@ -66,7 +66,7 @@ export abstract class TribufuApiBase {
      */
     protected static defaultHeaders(): HttpHeaders {
         const headers = {};
-        headers["X-Tribufu-Language"] = "javascript";
+        headers["X-Tribufu-Library"] = "javascript";
         headers["X-Tribufu-Version"] = TRIBUFU_VERSION;
         return headers;
     }
