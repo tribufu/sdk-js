@@ -2651,159 +2651,159 @@ export class TribufuApiGenerated extends TribufuApiBase {
 }
 
 export interface Account {
-    id?: string | null;
-    name?: string | null;
-    provider?: LoginProvider;
-    user_id?: string;
-    authorized?: boolean;
-    fields?: any | null;
-    created?: string;
-    updated?: string | null;
+    id: string | null;
+    name: string | null;
+    provider: LoginProvider;
+    user_id: string;
+    authorized: boolean;
+    fields: any | null;
+    created: string;
+    updated: string | null;
 }
 
 export interface CryptoViewModel {
-    encoded?: string | null;
-    decoded?: string | null;
+    encoded: string | null;
+    decoded: string | null;
 }
 
 export interface File {
-    id?: string;
-    name?: string | null;
-    description?: string | null;
-    image_url?: string | null;
-    author_id?: string;
-    version?: string | null;
-    file_url?: string | null;
-    raw_size?: number;
-    download_count?: number;
-    last_download?: string | null;
-    created?: string;
-    updated?: string | null;
+    id: string;
+    name: string | null;
+    description: string | null;
+    image_url: string | null;
+    author_id: string;
+    version: string | null;
+    file_url: string | null;
+    raw_size: number;
+    download_count: number;
+    last_download: string | null;
+    created: string;
+    updated: string | null;
 }
 
 export interface Game {
-    id?: string;
-    name?: string | null;
-    description?: string | null;
-    type?: number;
-    organization_id?: string;
-    icon_url?: string | null;
-    banner_url?: string | null;
-    capsule_image_url?: string | null;
-    library_image_url?: string | null;
-    parent_id?: string | null;
-    slug?: string | null;
-    visibility?: number;
-    password?: string | null;
-    primary?: number;
-    game_port?: number | null;
-    query_port?: number | null;
-    rcon_port?: number | null;
-    user_count?: number;
-    server_count?: number;
-    achievement_count?: number;
-    badge_count?: number;
-    download_count?: number;
-    steam_app_id?: number | null;
-    steam_server_app_id?: number | null;
-    enable_servers?: boolean;
-    rust_gamedig_id?: string | null;
-    node_gamedig_id?: string | null;
-    server_connect_url?: string | null;
-    server_tags?: string | null;
-    created?: string;
-    updated?: string | null;
+    id: string;
+    name: string | null;
+    description: string | null;
+    type: number;
+    organization_id: string;
+    icon_url: string | null;
+    banner_url: string | null;
+    capsule_image_url: string | null;
+    library_image_url: string | null;
+    parent_id: string | null;
+    slug: string | null;
+    visibility: number;
+    password: string | null;
+    primary: number;
+    game_port: number | null;
+    query_port: number | null;
+    rcon_port: number | null;
+    user_count: number;
+    server_count: number;
+    achievement_count: number;
+    badge_count: number;
+    download_count: number;
+    steam_app_id: number | null;
+    steam_server_app_id: number | null;
+    enable_servers: boolean;
+    rust_gamedig_id: string | null;
+    node_gamedig_id: string | null;
+    server_connect_url: string | null;
+    server_tags: string | null;
+    created: string;
+    updated: string | null;
 }
 
 export interface GameServer {
-    id?: string;
-    name?: string | null;
-    description?: string | null;
-    address?: string | null;
-    game_port?: number | null;
-    query_port?: number;
-    game_id?: string;
-    game_icon_url?: string | null;
-    version?: string | null;
-    featured?: number;
-    cluster_id?: string | null;
-    website_url?: string | null;
-    banner_url?: string | null;
-    owner_id?: string | null;
-    uptime?: number;
-    status?: ServerStatus;
-    ping?: number | null;
-    map?: string | null;
-    used_slots?: number | null;
-    max_slots?: number | null;
-    motd?: string | null;
-    players?: string | null;
-    last_online?: string | null;
-    country?: string | null;
-    steam?: number;
-    discord_server_id?: string | null;
-    youtube_video_url?: string | null;
-    tags?: string | null;
-    comment_count?: number;
-    created?: string;
-    updated?: string | null;
+    id: string;
+    name: string | null;
+    description: string | null;
+    address: string | null;
+    game_port: number | null;
+    query_port: number;
+    game_id: string;
+    game_icon_url: string | null;
+    version: string | null;
+    featured: number;
+    cluster_id: string | null;
+    website_url: string | null;
+    banner_url: string | null;
+    owner_id: string | null;
+    uptime: number;
+    status: ServerStatus;
+    ping: number | null;
+    map: string | null;
+    used_slots: number | null;
+    max_slots: number | null;
+    motd: string | null;
+    players: string | null;
+    last_online: string | null;
+    country: string | null;
+    steam: number;
+    discord_server_id: string | null;
+    youtube_video_url: string | null;
+    tags: string | null;
+    comment_count: number;
+    created: string;
+    updated: string | null;
 }
 
 export interface GameServerCluster {
-    id?: string;
-    name?: string | null;
-    description?: string | null;
-    package_id?: string;
-    website_url?: string | null;
-    banner_url?: string | null;
-    owner_id?: string;
-    discord_server_id?: string | null;
-    youtube_video_url?: string | null;
-    tags?: string | null;
-    comment_count?: number;
-    server_count?: number;
-    created?: string;
-    updated?: string | null;
+    id: string;
+    name: string | null;
+    description: string | null;
+    package_id: string;
+    website_url: string | null;
+    banner_url: string | null;
+    owner_id: string;
+    discord_server_id: string | null;
+    youtube_video_url: string | null;
+    tags: string | null;
+    comment_count: number;
+    server_count: number;
+    created: string;
+    updated: string | null;
 }
 
 export interface Group {
-    id?: string;
-    uuid?: string;
-    name?: string | null;
-    tag?: string | null;
-    description?: string | null;
-    type?: number;
-    privacy?: number;
-    owner_id?: string;
-    verified?: boolean;
-    photo_url?: string | null;
-    banner_url?: string | null;
-    member_count?: number;
-    follower_count?: number;
-    view_count?: number;
-    created?: string;
-    updated?: string | null;
+    id: string;
+    uuid: string;
+    name: string | null;
+    tag: string | null;
+    description: string | null;
+    type: number;
+    privacy: number;
+    owner_id: string;
+    verified: boolean;
+    photo_url: string | null;
+    banner_url: string | null;
+    member_count: number;
+    follower_count: number;
+    view_count: number;
+    created: string;
+    updated: string | null;
 }
 
 export interface GroupGame {
-    group_id?: string;
-    game_id?: string;
-    stats?: any | null;
-    acquired?: string;
-    last_used?: string | null;
-    group?: Group;
+    group_id: string;
+    game_id: string;
+    stats: any | null;
+    acquired: string;
+    last_used: string | null;
+    group: Group;
 }
 
 export interface GroupMember {
-    id?: string;
-    uuid?: string;
-    name?: string | null;
-    display_name?: string | null;
-    verified?: boolean;
-    photo_url?: string | null;
-    last_online?: string | null;
-    rank?: GroupRank;
-    since?: string;
+    id: string;
+    uuid: string;
+    name: string | null;
+    display_name: string | null;
+    verified: boolean;
+    photo_url: string | null;
+    last_online: string | null;
+    rank: GroupRank;
+    since: string;
 }
 
 export enum GroupRank {
@@ -2813,16 +2813,16 @@ export enum GroupRank {
 }
 
 export interface HashViewModel {
-    value?: string | null;
+    value: string | null;
 }
 
 export interface LeaderboardItem {
-    name?: string | null;
-    display_name?: string | null;
-    photo_url?: string | null;
-    level?: number;
-    experience?: number;
-    points?: number;
+    name: string | null;
+    display_name: string | null;
+    photo_url: string | null;
+    level: number;
+    experience: number;
+    points: number;
 }
 
 export enum LeaderboardOrder {
@@ -2841,82 +2841,82 @@ export enum LoginProvider {
 }
 
 export interface LoginRequest {
-    login?: string | null;
-    password?: string | null;
+    login: string | null;
+    password: string | null;
 }
 
 export interface LoginResponse {
-    user?: UserInfo;
-    access_token?: string | null;
-    refresh_token?: string | null;
-    expires_in?: number;
+    user: UserInfo;
+    access_token: string | null;
+    refresh_token: string | null;
+    expires_in: number;
 }
 
 export interface Profile {
-    id?: string;
-    uuid?: string;
-    name?: string | null;
-    display_name?: string | null;
-    flags?: string;
-    verified?: boolean;
-    level?: number;
-    experience?: number;
-    public_birthday?: boolean;
-    birthday?: string | null;
-    points?: number;
-    location?: string | null;
-    photo_url?: string | null;
-    banner_url?: string | null;
-    last_online?: string | null;
-    biography?: string | null;
-    view_count?: number;
-    created?: string;
-    updated?: string | null;
+    id: string;
+    uuid: string;
+    name: string | null;
+    display_name: string | null;
+    flags: string;
+    verified: boolean;
+    level: number;
+    experience: number;
+    public_birthday: boolean;
+    birthday: string | null;
+    points: number;
+    location: string | null;
+    photo_url: string | null;
+    banner_url: string | null;
+    last_online: string | null;
+    biography: string | null;
+    view_count: number;
+    created: string;
+    updated: string | null;
 }
 
 export interface ProfileGame {
-    id?: string;
-    name?: string | null;
-    capsule_image_url?: string | null;
-    library_image_url?: string | null;
-    slug?: string | null;
-    time_used?: number;
-    unlocked_achievements?: number;
-    total_achievements?: number;
-    stats?: any | null;
-    acquired?: string;
-    last_used?: string | null;
+    id: string;
+    name: string | null;
+    capsule_image_url: string | null;
+    library_image_url: string | null;
+    slug: string | null;
+    time_used: number;
+    unlocked_achievements: number;
+    total_achievements: number;
+    stats: any | null;
+    acquired: string;
+    last_used: string | null;
 }
 
 export interface ProfileGroup {
-    id?: string;
-    uuid?: string;
-    name?: string | null;
-    tag?: string | null;
-    privacy?: number;
-    verified?: boolean;
-    photo_url?: string | null;
-    member_count?: number;
-    rank?: GroupRank;
-    since?: string;
+    id: string;
+    uuid: string;
+    name: string | null;
+    tag: string | null;
+    privacy: number;
+    verified: boolean;
+    photo_url: string | null;
+    member_count: number;
+    rank: GroupRank;
+    since: string;
 }
 
 export interface RefreshRequest {
-    refresh_token?: string | null;
+    refresh_token: string | null;
 }
 
 export interface RegisterRequest {
-    uuid?: string | null;
+    uuid: string | null;
     name: string;
-    email?: string | null;
+    email: string | null;
     password: string;
 }
 
 export interface SearchRequest {
-    type?: SearchType;
-    query?: string | null;
-    page?: number | null;
-    game_id?: string | null;
+    type: SearchType;
+    query: string | null;
+    page: number | null;
+    game_id: string | null;
 }
 
 export enum SearchType {
@@ -2927,9 +2927,9 @@ export enum SearchType {
 }
 
 export interface ServerMetrics {
-    server_count?: number;
-    package_count?: number;
-    country_count?: number;
+    server_count: number;
+    package_count: number;
+    country_count: number;
 }
 
 export enum ServerStatus {
@@ -2939,46 +2939,46 @@ export enum ServerStatus {
 }
 
 export interface Subscription {
-    id?: string;
-    name?: string | null;
-    description?: string | null;
-    image_url?: string | null;
-    readonly prices?: { [key: string]: number; } | null;
-    created?: string;
-    updated?: string | null;
+    id: string;
+    name: string | null;
+    description: string | null;
+    image_url: string | null;
+    readonly prices: { [key: string]: number; } | null;
+    created: string;
+    updated: string | null;
 }
 
 export interface UpdateProfile {
-    display_name?: string | null;
-    biography?: string | null;
+    display_name: string | null;
+    biography: string | null;
 }
 
 export interface UserInfo {
-    id?: string;
-    uuid?: string;
-    name?: string | null;
-    display_name?: string | null;
-    email?: string | null;
-    type?: UserType;
-    flags?: string;
-    permissions?: string;
-    verified?: boolean;
-    level?: number;
-    experience?: number;
-    public_birthday?: boolean;
-    birthday?: string | null;
-    points?: number;
-    location?: string | null;
-    language?: string | null;
-    timezone?: string | null;
-    currency?: string | null;
-    photo_url?: string | null;
-    banner_url?: string | null;
-    last_online?: string | null;
-    biography?: string | null;
-    view_count?: number;
-    created?: string;
-    updated?: string | null;
+    id: string;
+    uuid: string;
+    name: string | null;
+    display_name: string | null;
+    email: string | null;
+    type: UserType;
+    flags: string;
+    permissions: string;
+    verified: boolean;
+    level: number;
+    experience: number;
+    public_birthday: boolean;
+    birthday: string | null;
+    points: number;
+    location: string | null;
+    language: string | null;
+    timezone: string | null;
+    currency: string | null;
+    photo_url: string | null;
+    banner_url: string | null;
+    last_online: string | null;
+    biography: string | null;
+    view_count: number;
+    created: string;
+    updated: string | null;
 }
 
 export enum UserType {

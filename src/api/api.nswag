@@ -41,7 +41,7 @@
             "useTransformResultMethod": false,
             "generateDtoTypes": true,
             "operationGenerationMode": "SingleClientFromOperationId",
-            "markOptionalProperties": true,
+            "markOptionalProperties": false,
             "generateCloneMethod": false,
             "typeStyle": "Interface",
             "enumStyle": "Enum",
