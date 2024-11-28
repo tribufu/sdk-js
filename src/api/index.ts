@@ -53,7 +53,7 @@ export class TribufuApi extends TribufuApiGenerated {
      * ```
      */
     public static fromEnv(prefix?: string | null): TribufuApi | null {
-        if (!process) {
+        if (typeof process === "undefined") {
             return null;
         }
 
@@ -93,7 +93,7 @@ export class TribufuApi extends TribufuApiGenerated {
      * @returns string
      */
     protected static getBaseUrl(): string {
-        if (!process) {
+        if (typeof process === "undefined") {
             return TRIBUFU_API_URL;
         }
 

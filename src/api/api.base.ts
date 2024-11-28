@@ -18,11 +18,11 @@ export abstract class TribufuApiBase {
      * @returns boolean
      */
     public static debugEnabled(): boolean {
-        if (!process) {
-            return false;
+        if (typeof process !== "undefined") {
+            return process.env.NODE_ENV === "development";
         }
 
-        return process.env.NODE_ENV === "development";
+        return false;
     }
 
     /**
