@@ -444,101 +444,10 @@ export class TribufuApiGenerated extends TribufuApiBase {
     }
 
     /**
-     * Get a list of files.
-     * @param page (optional) 
-     * @param limit (optional) 
-     * @return OK
-     */
-    getFiles(page?: number | undefined, limit?: number | undefined): Promise<File[]> {
-        let url_ = this.baseUrl + "/v1/files?";
-        if (page === null)
-            throw new Error("The parameter 'page' cannot be null.");
-        else if (page !== undefined)
-            url_ += "page=" + encodeURIComponent("" + page) + "&";
-        if (limit === null)
-            throw new Error("The parameter 'limit' cannot be null.");
-        else if (limit !== undefined)
-            url_ += "limit=" + encodeURIComponent("" + limit) + "&";
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_: RequestInit = {
-            method: "GET",
-            headers: {
-                "Accept": "text/plain"
-            }
-        };
-
-        return this.transformOptions(options_).then(transformedOptions_ => {
-            return this.http.fetch(url_, transformedOptions_);
-        }).then((_response: Response) => {
-            return this.processGetFiles(_response);
-        });
-    }
-
-    protected processGetFiles(response: Response): Promise<File[]> {
-        const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
-        if (status === 200) {
-            return response.text().then((_responseText) => {
-            let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as File[];
-            return result200;
-            });
-        } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
-        }
-        return Promise.resolve<File[]>(null as any);
-    }
-
-    /**
-     * Get a file by id.
-     * @return OK
-     */
-    getFileById(id: string): Promise<File> {
-        let url_ = this.baseUrl + "/v1/files/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_: RequestInit = {
-            method: "GET",
-            headers: {
-                "Accept": "text/plain"
-            }
-        };
-
-        return this.transformOptions(options_).then(transformedOptions_ => {
-            return this.http.fetch(url_, transformedOptions_);
-        }).then((_response: Response) => {
-            return this.processGetFileById(_response);
-        });
-    }
-
-    protected processGetFileById(response: Response): Promise<File> {
-        const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
-        if (status === 200) {
-            return response.text().then((_responseText) => {
-            let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as File;
-            return result200;
-            });
-        } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
-        }
-        return Promise.resolve<File>(null as any);
-    }
-
-    /**
      * Get a list of games.
      * @return OK
      */
-    getGames(): Promise<Game[]> {
+    getGames(): Promise<Application[]> {
         let url_ = this.baseUrl + "/v1/games";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -556,13 +465,13 @@ export class TribufuApiGenerated extends TribufuApiBase {
         });
     }
 
-    protected processGetGames(response: Response): Promise<Game[]> {
+    protected processGetGames(response: Response): Promise<Application[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Game[];
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Application[];
             return result200;
             });
         } else if (status !== 200 && status !== 204) {
@@ -570,14 +479,14 @@ export class TribufuApiGenerated extends TribufuApiBase {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<Game[]>(null as any);
+        return Promise.resolve<Application[]>(null as any);
     }
 
     /**
      * Get a game by id.
      * @return OK
      */
-    getGameById(id: string): Promise<Game> {
+    getGameById(id: string): Promise<Application> {
         let url_ = this.baseUrl + "/v1/games/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -598,13 +507,13 @@ export class TribufuApiGenerated extends TribufuApiBase {
         });
     }
 
-    protected processGetGameById(response: Response): Promise<Game> {
+    protected processGetGameById(response: Response): Promise<Application> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Game;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Application;
             return result200;
             });
         } else if (status !== 200 && status !== 204) {
@@ -612,7 +521,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<Game>(null as any);
+        return Promise.resolve<Application>(null as any);
     }
 
     /**
@@ -717,6 +626,58 @@ export class TribufuApiGenerated extends TribufuApiBase {
             });
         }
         return Promise.resolve<GameServerCluster[]>(null as any);
+    }
+
+    /**
+     * Get a list of game items.
+     * @param page (optional) 
+     * @param limit (optional) 
+     * @return OK
+     */
+    getGameItems(id: string, page?: number | undefined, limit?: number | undefined): Promise<any[]> {
+        let url_ = this.baseUrl + "/v1/games/{id}/items?";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        if (page === null)
+            throw new Error("The parameter 'page' cannot be null.");
+        else if (page !== undefined)
+            url_ += "page=" + encodeURIComponent("" + page) + "&";
+        if (limit === null)
+            throw new Error("The parameter 'limit' cannot be null.");
+        else if (limit !== undefined)
+            url_ += "limit=" + encodeURIComponent("" + limit) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+                "Accept": "text/plain"
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processGetGameItems(_response);
+        });
+    }
+
+    protected processGetGameItems(response: Response): Promise<any[]> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as any[];
+            return result200;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<any[]>(null as any);
     }
 
     /**
@@ -1144,6 +1105,97 @@ export class TribufuApiGenerated extends TribufuApiBase {
             });
         }
         return Promise.resolve<LeaderboardItem[]>(null as any);
+    }
+
+    /**
+     * Get a list of packages.
+     * @param page (optional) 
+     * @param limit (optional) 
+     * @return OK
+     */
+    getPackages(page?: number | undefined, limit?: number | undefined): Promise<Package[]> {
+        let url_ = this.baseUrl + "/v1/packages?";
+        if (page === null)
+            throw new Error("The parameter 'page' cannot be null.");
+        else if (page !== undefined)
+            url_ += "page=" + encodeURIComponent("" + page) + "&";
+        if (limit === null)
+            throw new Error("The parameter 'limit' cannot be null.");
+        else if (limit !== undefined)
+            url_ += "limit=" + encodeURIComponent("" + limit) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+                "Accept": "text/plain"
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processGetPackages(_response);
+        });
+    }
+
+    protected processGetPackages(response: Response): Promise<Package[]> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Package[];
+            return result200;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<Package[]>(null as any);
+    }
+
+    /**
+     * Get a package by id.
+     * @return OK
+     */
+    getPackageById(id: string): Promise<Package> {
+        let url_ = this.baseUrl + "/v1/packages/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+                "Accept": "text/plain"
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processGetPackageById(_response);
+        });
+    }
+
+    protected processGetPackageById(response: Response): Promise<Package> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Package;
+            return result200;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<Package>(null as any);
     }
 
     /**
@@ -2661,32 +2713,12 @@ export interface Account {
     updated: string | null;
 }
 
-export interface CryptoViewModel {
-    encoded: string | null;
-    decoded: string | null;
-}
-
-export interface File {
+export interface Application {
     id: string;
     name: string | null;
     description: string | null;
-    image_url: string | null;
-    author_id: string;
-    version: string | null;
-    file_url: string | null;
-    raw_size: number;
-    download_count: number;
-    last_download: string | null;
-    created: string;
-    updated: string | null;
-}
-
-export interface Game {
-    id: string;
-    name: string | null;
-    description: string | null;
-    type: number;
-    organization_id: string;
+    type: ApplicationType;
+    organization_id: string | null;
     icon_url: string | null;
     banner_url: string | null;
     capsule_image_url: string | null;
@@ -2696,23 +2728,22 @@ export interface Game {
     visibility: number;
     password: string | null;
     primary: number;
-    game_port: number | null;
-    query_port: number | null;
-    rcon_port: number | null;
     user_count: number;
-    server_count: number;
     achievement_count: number;
-    badge_count: number;
+    badge_count: number | null;
     download_count: number;
-    steam_app_id: number | null;
-    steam_server_app_id: number | null;
-    enable_servers: boolean;
-    rust_gamedig_id: string | null;
-    node_gamedig_id: string | null;
-    server_connect_url: string | null;
-    server_tags: string | null;
     created: string;
     updated: string | null;
+}
+
+export enum ApplicationType {
+    Application = "application",
+    Game = "game",
+}
+
+export interface CryptoViewModel {
+    encoded: string | null;
+    decoded: string | null;
 }
 
 export interface GameServer {
@@ -2753,7 +2784,7 @@ export interface GameServerCluster {
     id: string;
     name: string | null;
     description: string | null;
-    package_id: string;
+    game_id: string;
     website_url: string | null;
     banner_url: string | null;
     owner_id: string;
@@ -2787,7 +2818,7 @@ export interface Group {
 
 export interface GroupGame {
     group_id: string;
-    game_id: string;
+    application_id: string;
     stats: any | null;
     acquired: string;
     last_used: string | null;
@@ -2850,6 +2881,21 @@ export interface LoginResponse {
     access_token: string | null;
     refresh_token: string | null;
     expires_in: number;
+}
+
+export interface Package {
+    id: string;
+    name: string | null;
+    description: string | null;
+    image_url: string | null;
+    author_id: string;
+    version: string | null;
+    file_url: string | null;
+    raw_size: number;
+    download_count: number;
+    last_download: string | null;
+    created: string;
+    updated: string | null;
 }
 
 export interface Profile {
@@ -2984,7 +3030,6 @@ export interface UserInfo {
 export enum UserType {
     User = "user",
     Bot = "bot",
-    Organization = "organization",
 }
 
 export class TribufuApiError extends Error {
