@@ -4,14 +4,14 @@
     "documentGenerator": {
         "fromDocument": {
             "json": "",
-            "url": "http://localhost:5000/openapi.json",
+            "url": "http://localhost:5578/openapi.json",
             "output": null,
             "newLineBehavior": "Auto"
         }
     },
     "codeGenerators": {
         "openApiToTypeScriptClient": {
-            "className": "TribufuApiGenerated",
+            "className": "TribufuTranslateGenerated",
             "moduleName": "",
             "namespace": "",
             "typeScriptVersion": 4.3,
@@ -29,7 +29,7 @@
             "generateOptionalParameters": true,
             "exportTypes": true,
             "wrapDtoExceptions": false,
-            "exceptionClass": "TribufuApiError",
+            "exceptionClass": "TribufuTranslateError",
             "clientBaseClass": "TribufuApiBase",
             "wrapResponses": false,
             "wrapResponseMethods": [],

@@ -8,7 +8,7 @@
 /* eslint-disable */
 // ReSharper disable InconsistentNaming
 
-import { TribufuApiBase } from "./api.base";
+import { TribufuApiBase } from "../core/base";
 
 export class TribufuApiGenerated extends TribufuApiBase {
     private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
@@ -62,7 +62,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Login with name or email and password.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     login(body?: LoginRequest | undefined): Promise<LoginResponse> {
@@ -106,7 +106,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Create a new user.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     register(body?: RegisterRequest | undefined): Promise<LoginResponse> {
@@ -150,7 +150,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Refresh credentials.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     refresh(body?: RefreshRequest | undefined): Promise<LoginResponse> {
@@ -230,8 +230,8 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Get a list of game server clusters.
-     * @param page (optional) 
-     * @param limit (optional) 
+     * @param page (optional)
+     * @param limit (optional)
      * @return OK
      */
     getClusters(page?: number | undefined, limit?: number | undefined): Promise<GameServerCluster[]> {
@@ -279,7 +279,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Create a new game server cluster.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     createCluster(body?: any | undefined): Promise<void> {
@@ -362,7 +362,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Update a game server cluster.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     updateCluster(id: string, body?: any | undefined): Promise<void> {
@@ -526,8 +526,8 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Get a list of game servers of a game.
-     * @param page (optional) 
-     * @param limit (optional) 
+     * @param page (optional)
+     * @param limit (optional)
      * @return OK
      */
     getGameServers(id: string, page?: number | undefined, limit?: number | undefined): Promise<GameServer[]> {
@@ -578,8 +578,8 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Get a list of game server clusters of a game.
-     * @param page (optional) 
-     * @param limit (optional) 
+     * @param page (optional)
+     * @param limit (optional)
      * @return OK
      */
     getGameClusters(id: string, page?: number | undefined, limit?: number | undefined): Promise<GameServerCluster[]> {
@@ -630,8 +630,8 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Get a list of game items.
-     * @param page (optional) 
-     * @param limit (optional) 
+     * @param page (optional)
+     * @param limit (optional)
      * @return OK
      */
     getGameItems(id: string, page?: number | undefined, limit?: number | undefined): Promise<any[]> {
@@ -682,8 +682,8 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Get a list of groups.
-     * @param page (optional) 
-     * @param limit (optional) 
+     * @param page (optional)
+     * @param limit (optional)
      * @return OK
      */
     getGroups(page?: number | undefined, limit?: number | undefined): Promise<Group[]> {
@@ -731,7 +731,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Create a new group.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     createGroup(body?: any | undefined): Promise<void> {
@@ -814,7 +814,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Update a group.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     updateGroup(id: string, body?: any | undefined): Promise<void> {
@@ -1065,7 +1065,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Get the top 20 leaderboard users.
-     * @param order (optional) 
+     * @param order (optional)
      * @return OK
      */
     getLeaderboard(order?: LeaderboardOrder | undefined): Promise<LeaderboardItem[]> {
@@ -1109,8 +1109,8 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Get a list of packages.
-     * @param page (optional) 
-     * @param limit (optional) 
+     * @param page (optional)
+     * @param limit (optional)
      * @return OK
      */
     getPackages(page?: number | undefined, limit?: number | undefined): Promise<Package[]> {
@@ -1200,7 +1200,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Advanced search for servers or players.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     search(body?: SearchRequest | undefined): Promise<any[]> {
@@ -1244,8 +1244,8 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Get a list of game servers.
-     * @param page (optional) 
-     * @param limit (optional) 
+     * @param page (optional)
+     * @param limit (optional)
      * @return OK
      */
     getServers(page?: number | undefined, limit?: number | undefined): Promise<GameServer[]> {
@@ -1293,7 +1293,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Create a new game server.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     createServer(body?: any | undefined): Promise<void> {
@@ -1376,7 +1376,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Update a game server.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     updateServer(id: string, body?: any | undefined): Promise<void> {
@@ -1504,8 +1504,8 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Get a list of game servers from a country.
-     * @param page (optional) 
-     * @param limit (optional) 
+     * @param page (optional)
+     * @param limit (optional)
      * @return OK
      */
     getServersByCountry(country: string, page?: number | undefined, limit?: number | undefined): Promise<GameServer[]> {
@@ -1556,7 +1556,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Claim a game server.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     claimServer(id: string, body?: any | undefined): Promise<void> {
@@ -1678,8 +1678,8 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Get a list of subscriptions.
-     * @param page (optional) 
-     * @param limit (optional) 
+     * @param page (optional)
+     * @param limit (optional)
      * @return OK
      */
     getSubscriptions(page?: number | undefined, limit?: number | undefined): Promise<Subscription[]> {
@@ -1769,8 +1769,8 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Get a list of user profiles.
-     * @param page (optional) 
-     * @param limit (optional) 
+     * @param page (optional)
+     * @param limit (optional)
      * @return OK
      */
     getUsers(page?: number | undefined, limit?: number | undefined): Promise<Profile[]> {
@@ -2070,8 +2070,8 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Get a list of servers the user is owner of.
-     * @param page (optional) 
-     * @param limit (optional) 
+     * @param page (optional)
+     * @param limit (optional)
      * @return OK
      */
     getUserServers(id: string, page?: number | undefined, limit?: number | undefined): Promise<GameServer[]> {
@@ -2206,7 +2206,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Update a user profile.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     updateUserProfile(id: string, body?: UpdateProfile | undefined): Promise<Profile> {
@@ -2253,7 +2253,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Change the email of a user.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     changeEmail(id: string, body?: any | undefined): Promise<void> {
@@ -2297,7 +2297,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Change the password of a user.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     changePassword(id: string, body?: any | undefined): Promise<void> {
@@ -2341,8 +2341,8 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Generate a random password.
-     * @param length (optional) 
-     * @param symbols (optional) 
+     * @param length (optional)
+     * @param symbols (optional)
      * @return OK
      */
     generatePassword(length?: number | undefined, symbols?: boolean | undefined): Promise<HashViewModel> {
@@ -2390,7 +2390,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Generate one or more flake ids.
-     * @param amount (optional) 
+     * @param amount (optional)
      * @return OK
      */
     generateFlakeId(amount?: number | undefined): Promise<string[]> {
@@ -2434,8 +2434,8 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Generate one or more uuids with a specific version.
-     * @param version (optional) 
-     * @param amount (optional) 
+     * @param version (optional)
+     * @param amount (optional)
      * @return OK
      */
     generateUuid(version?: number | undefined, amount?: number | undefined): Promise<string[]> {
@@ -2483,7 +2483,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Convert a string to base64 or vice versa.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     convertBase64(body?: CryptoViewModel | undefined): Promise<CryptoViewModel> {
@@ -2527,7 +2527,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Hash a string using md5.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     hashMd5(body?: HashViewModel | undefined): Promise<HashViewModel> {
@@ -2571,7 +2571,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Hash a string using sha256.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     hashSha256(body?: HashViewModel | undefined): Promise<HashViewModel> {
@@ -2615,7 +2615,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Hash a string using bcrypt.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     hashBcrypt(body?: HashViewModel | undefined): Promise<HashViewModel> {
@@ -2659,7 +2659,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
 
     /**
      * Hash a string using argon2.
-     * @param body (optional) 
+     * @param body (optional)
      * @return OK
      */
     hashArgon2(body?: HashViewModel | undefined): Promise<HashViewModel> {

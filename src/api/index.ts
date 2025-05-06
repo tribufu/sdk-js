@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 
 import { TRIBUFU_API_URL } from "..";
-import { TribufuApiBase } from "./api.base";
-import { TribufuApiGenerated } from "./api.generated";
+import { TribufuApiBase } from "../core/base";
+import { TribufuApiGenerated } from "./generated";
 import { TribufuApiOptions } from "../options";
 
 /**
