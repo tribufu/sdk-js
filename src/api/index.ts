@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 
 import { TRIBUFU_API_URL } from "..";
-import { TribufuApiBase } from "./api.base";
-import { TribufuApiGenerated } from "./api.generated";
+import { TribufuApiBase } from "./base";
+import { TribufuApiGenerated } from "./generated";
 import { TribufuApiOptions } from "../options";
 
 /**
@@ -98,8 +98,6 @@ export class TribufuApi extends TribufuApiGenerated {
         }
 
         const baseUrl = process.env[`TRIBUFU_API_URL`] || null;
-        return TribufuApiBase.debugEnabled() && baseUrl
-            ? baseUrl
-            : TRIBUFU_API_URL;
+        return TribufuApiBase.debugEnabled() && baseUrl ? baseUrl : TRIBUFU_API_URL;
     }
 }

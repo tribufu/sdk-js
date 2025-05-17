@@ -4,7 +4,7 @@
     "documentGenerator": {
         "fromDocument": {
             "json": "",
-            "url": "http://localhost:5000/v1/openapi.json",
+            "url": "https://api.tribufu.com/v1/openapi.json",
             "output": null,
             "newLineBehavior": "Auto"
         }
@@ -48,7 +48,7 @@
             "useLeafType": false,
             "classTypes": [],
             "extendedClasses": [],
-            "extensionCode": "api.include.ts",
+            "extensionCode": "include.ts",
             "generateDefaultValues": true,
             "excludedTypeNames": [],
             "excludedParameterNames": [],
@@ -67,7 +67,7 @@
             "templateDirectory": null,
             "serviceHost": null,
             "serviceSchemes": null,
-            "output": "api.generated.ts",
+            "output": "generated.ts",
             "newLineBehavior": "LF"
         }
     }

@@ -8,7 +8,7 @@
 /* eslint-disable */
 // ReSharper disable InconsistentNaming
 
-import { TribufuApiBase } from "./api.base";
+import { TribufuApiBase } from "./base";
 
 export class TribufuApiGenerated extends TribufuApiBase {
     private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };

@@ -92,12 +92,10 @@ export abstract class TribufuApiBase {
      * @returns
      */
     protected transformOptions(options: RequestInit) {
-        if (this.apiKey) {
-            options.headers = {
-                ...options.headers,
-                ...this.getHeaders(),
-            };
-        }
+        options.headers = {
+            ...options.headers,
+            ...this.getHeaders(),
+        };
 
         return Promise.resolve(options);
     }

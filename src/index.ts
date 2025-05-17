@@ -22,9 +22,9 @@ export {
     TribufuApiSingleton,
 };
 
-export * from "./api/api.base";
-export * from "./api/api.generated";
-export * from "./api/api.include";
+export * from "./api/base";
+export * from "./api/generated";
+export * from "./api/include";
 export * from "./api/index";
 export * from "./api/singletion";
 export * from "./http/headers";
