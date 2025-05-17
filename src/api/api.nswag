@@ -4,7 +4,7 @@
     "documentGenerator": {
         "fromDocument": {
             "json": "",
-            "url": "https://api.tribufu.com/v1/openapi.json",
+            "url": "https://api.tribufu.com/openapi.json",
             "output": null,
             "newLineBehavior": "Auto"
         }

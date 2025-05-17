@@ -2713,6 +2713,29 @@ export interface Account {
     updated: string | null;
 }
 
+export interface Application {
+    id: string;
+    name: string | null;
+    description: string | null;
+    type: ApplicationType;
+    organization_id: string | null;
+    icon_url: string | null;
+    banner_url: string | null;
+    capsule_image_url: string | null;
+    library_image_url: string | null;
+    parent_id: string | null;
+    slug: string | null;
+    visibility: number;
+    password: string | null;
+    primary: number;
+    user_count: number;
+    achievement_count: number;
+    badge_count: number | null;
+    download_count: number;
+    created: string;
+    updated: string | null;
+}
+
 export enum ApplicationType {
     Application = "application",
     Game = "game",
@@ -2830,6 +2853,7 @@ export interface Group {
 export interface GroupGame {
     group_id: string;
     application_id: string;
+    application: Application;
     stats: any | null;
     acquired: string;
     last_used: string | null;
