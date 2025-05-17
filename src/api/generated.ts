@@ -447,7 +447,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
      * Get a list of games.
      * @return OK
      */
-    getGames(): Promise<Application[]> {
+    getGames(): Promise<Game[]> {
         let url_ = this.baseUrl + "/v1/games";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -465,13 +465,13 @@ export class TribufuApiGenerated extends TribufuApiBase {
         });
     }
 
-    protected processGetGames(response: Response): Promise<Application[]> {
+    protected processGetGames(response: Response): Promise<Game[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Application[];
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Game[];
             return result200;
             });
         } else if (status !== 200 && status !== 204) {
@@ -479,14 +479,14 @@ export class TribufuApiGenerated extends TribufuApiBase {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<Application[]>(null as any);
+        return Promise.resolve<Game[]>(null as any);
     }
 
     /**
      * Get a game by id.
      * @return OK
      */
-    getGameById(id: string): Promise<Application> {
+    getGameById(id: string): Promise<Game> {
         let url_ = this.baseUrl + "/v1/games/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -507,13 +507,13 @@ export class TribufuApiGenerated extends TribufuApiBase {
         });
     }
 
-    protected processGetGameById(response: Response): Promise<Application> {
+    protected processGetGameById(response: Response): Promise<Game> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Application;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Game;
             return result200;
             });
         } else if (status !== 200 && status !== 204) {
@@ -521,7 +521,7 @@ export class TribufuApiGenerated extends TribufuApiBase {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<Application>(null as any);
+        return Promise.resolve<Game>(null as any);
     }
 
     /**
@@ -2713,7 +2713,28 @@ export interface Account {
     updated: string | null;
 }
 
-export interface Application {
+export enum ApplicationType {
+    Application = "application",
+    Game = "game",
+}
+
+export interface CryptoViewModel {
+    encoded: string | null;
+    decoded: string | null;
+}
+
+export interface Game {
+    game_port: number | null;
+    query_port: number | null;
+    rcon_port: number | null;
+    server_count: number;
+    steam_app_id: number | null;
+    steam_server_app_id: number | null;
+    enable_servers: boolean;
+    rust_gamedig_id: string | null;
+    node_gamedig_id: string | null;
+    server_connect_url: string | null;
+    server_tags: string | null;
     id: string;
     name: string | null;
     description: string | null;
@@ -2734,16 +2755,6 @@ export interface Application {
     download_count: number;
     created: string;
     updated: string | null;
-}
-
-export enum ApplicationType {
-    Application = "application",
-    Game = "game",
-}
-
-export interface CryptoViewModel {
-    encoded: string | null;
-    decoded: string | null;
 }
 
 export interface GameServer {
