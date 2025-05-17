@@ -8,9 +8,7 @@ dotenv.config();
 
 async function main() {
     const tribufu = TribufuApi.fromEnv();
-    console.log(
-        await tribufu.getServerByAddressAndQueryPort("mine.tribufu.com", 25565),
-    );
+    console.log(await tribufu.getUserInfo());
 }
 
 main();
