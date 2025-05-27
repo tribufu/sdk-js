@@ -1,6 +1,6 @@
-# Tribufu JS
+# Tribufu TypeScript
 
-JavaScript SDK to access Tribufu APIs and services.
+TypeScript SDK to access Tribufu APIs and services.
 
 [![NPM][npm-badge]][npm-url]
 [![MIT License][mit-badge]][mit-url]
@@ -9,7 +9,7 @@ JavaScript SDK to access Tribufu APIs and services.
 [npm-badge]: https://img.shields.io/npm/v/tribufu.svg
 [npm-url]: https://www.npmjs.com/package/tribufu
 [mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
-[mit-url]: https://github.com/Tribufu/TribufuJs/blob/main/LICENSE.txt
+[mit-url]: https://github.com/tribufu/tribufu-typescript/blob/main/LICENSE.txt
 [discord-badge]: https://img.shields.io/discord/276504514616623104.svg?logo=discord&style=flat-square
 [discord-url]: https://www.tribufu.com/discord
 
@@ -20,4 +20,4 @@ JavaScript SDK to access Tribufu APIs and services.
 
 This project is licensed under the [MIT License].
 
-[MIT License]: https://github.com/Tribufu/TribufuJs/blob/main/LICENSE.txt
+[MIT License]: https://github.com/tribufu/tribufu-typescript/blob/main/LICENSE.txt
