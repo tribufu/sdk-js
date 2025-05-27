@@ -1,0 +1,8 @@
+docs/
+
+.gitignore
+.npmignore
+git_push.sh
+package.json
+README.md
+src/index.ts

@@ -1,1 +1,0 @@
-import { TribufuApiBase } from "./base";

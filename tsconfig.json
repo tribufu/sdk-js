@@ -12,21 +12,11 @@
         "resolveJsonModule": true,
         "rootDir": "src",
         "outDir": "build",
-        "lib": [
-            "ESNext",
-            "DOM"
-        ],
+        "lib": ["ESNext", "DOM"],
         "paths": {
-            "@/*": [
-                "./*"
-            ]
+            "@/*": ["./*"]
         }
     },
-    "include": [
-        "src/**/*.ts",
-    ],
-    "exclude": [
-        "build",
-        "node_modules",
-    ],
+    "include": ["src/**/*.ts"],
+    "exclude": ["build", "node_modules"]
 }
