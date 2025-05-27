@@ -1,8 +1,8 @@
 {
     "name": "tribufu",
     "version": "1.1.0",
-    "description": "Tribufu JS SDK",
-    "repository": "https://github.com/Tribufu/TribufuJs",
+    "description": "Tribufu TypeScript SDK",
+    "repository": "https://github.com/tribufu/tribufu-typescript",
     "author": "Tribufu <contact@Tribufu.com>",
     "license": "MIT",
     "type": "module",
