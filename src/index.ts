@@ -7,6 +7,7 @@ import { TribufuGeneratedApi } from "./apis/TribufuGeneratedApi";
 import { JavaScriptRuntime } from "./node";
 
 export * from "./constants";
+export * from "./singletion";
 
 /**
  * **Tribufu API**
